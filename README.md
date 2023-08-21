@@ -5,6 +5,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
 - [Repo Contents](folder-contents)
 - [Low Cost Sampler Description](#low-cost-sampler-description)
+- [3d prints](#3d-prints)
 - [Parts List](#parts-list)
 - [Known Bugs](#known-bugs)
 - [Future Developments](#future-developments)
@@ -32,6 +33,8 @@ To learn more about AWQP, please visit [the AWQP website](https://waterquality.c
 ## Repo Contents
 - .vscode
     - settings for flashing in VS code using the particle workbench add-on.
+- 3d-prints
+    - contains .STL files for printing required assembly parts on a 3d-printer
 - compiled-firmwares
     - previously compiled firmwares for various borons (current code requires a unique binary for each device to accomodate for individual e-tape calibration)
 - figures
@@ -77,6 +80,9 @@ Figure 2.
 
 ![flow comparison graph](./figures/flowComparison.png)
 **Figure 2.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
+
+## 3d-prints
+Coming soon!
 
 ## Parts List
 Coming soon!
