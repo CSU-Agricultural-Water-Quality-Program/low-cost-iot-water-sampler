@@ -29,7 +29,13 @@ CSU AWQP intends to create additional research and regulation opportunities for 
 using this technology.
 
 ## Repo Contents
-- file breakdown (in progress)
+- .vscode
+- compiled-firmwares
+- figures
+- lib
+- src
+- target
+- project.properties
 
 ## Low Cost Sampler Description
 The AWQP-developed LCS is comprised of six main components as shown in Figure 1: 1) a
@@ -37,10 +43,9 @@ cellular-enabled microcontroller, 2) a 12V battery and solar charger, 3) a peris
 tubing for water sample collection, 4) a 12V, 10W solar panel, 5) a water depth detecting sensor
 and, 6) a cooler for sample preservation.
 
-<figure>
-  <img src="./figures/LCS.png" alt="low-cost sampler image">
-  <figcaption>Figure 1. Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a X V, X W solar panel, 5) a water depth detecting sensor, and 6) a cooler.</figcaption>
-</figure>
+![low-cost sampler image](./figures/LCS.png)
+**Figure 1.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a X V, X W solar panel, 5) a water depth detecting sensor, and 6) a cooler.
+
 
 Like commercial models, the LCS can detect and measure water flow in an installed flume via
 depth, sample water at pre-determined or user-triggered intervals (in this case, hourly), preserve
@@ -62,10 +67,8 @@ sample points to accurately make a comparison. An example runoff depth measureme
 comparison from an irrigation event at a corn field in Fort Collins, CO in 2020 is shown in
 Figure 2.
 
-<figure>
-  <img src="./figures/flowComparison.png" alt="low-cost sampler image">
-  <figcaption>Figure 2. Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.</figcaption>
-</figure>
+![flow comparison graph](./figures/flowComparison.png)
+**Figure 2.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
 
 ## Parts List
 Coming soon!
