@@ -85,4 +85,6 @@ Coming soon!
 Coming soon!
 
 ## Future Developments
-Coming soon!
+- Integrate a "time until next sampling" variable that can be called or sent at each payload
+- add remote reset function to allow the user to reset the particle boron microcontroller remotely
+- make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.
