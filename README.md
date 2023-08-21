@@ -25,17 +25,25 @@ Program (AWQP) has developed a low-cost, automated water sampler (LCS) with Inte
 Things (IoT) technology for scalable, near-real-time water quality research. This work directly
 follows deliverables from an awarded NRCS Conservation Innovation Grant titled, “Next
 Generation Technology for Monitoring Edge-of-Field Water Quality in Organic Agriculture”. The
-CSU AWQP intends to create additional research and regulation opportunities for Colorado and beyond
-using this technology.
+CSU AWQP intends to create additional research and regulation opportunities for Colorado and beyond using this technology.
+
+To learn more about AWQP, please visit [the AWQP website](https://waterquality.colostate.edu).
 
 ## Repo Contents
 - .vscode
+    - settings for flashing in VS code using the particle workbench add-on.
 - compiled-firmwares
+    - previously compiled firmwares for various borons (current code requires a unique binary for each device to accomodate for individual e-tape calibration)
 - figures
+    - figures embedded into README.md
 - lib
+    - libraries used in source code
 - src
+    - source code for particle boron flashing
 - target
+    - available firmware targets for particle devices
 - project.properties
+    - contains project code and library dependencies
 
 ## Low Cost Sampler Description
 The AWQP-developed LCS is comprised of six main components as shown in Figure 1: 1) a
