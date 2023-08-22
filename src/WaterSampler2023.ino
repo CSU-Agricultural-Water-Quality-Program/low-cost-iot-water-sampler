@@ -28,10 +28,10 @@
 #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI"
 #define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
 
-//#define SERIESRESISTOR 2000    //12 etape resistance
-#define SERIESRESISTOR 2500    //15 etape resistance
-//#define SERIESRESISTOR 3000    //18 etape resistance
-//#define SERIESRESISTOR 4000    //24 etape resistance
+//#define SERIESRESISTOR 2000    //12-in. etape resistance
+#define SERIESRESISTOR 2500    //15-in. etape resistance
+//#define SERIESRESISTOR 3000    //18-in. etape resistance
+//#define SERIESRESISTOR 4000    //24-in. etape resistance
 
 #include <MeanFilterLib.h>  // setup library
 #include <AccelStepper.h>
@@ -40,32 +40,19 @@
 #include <blynk.h>
 
 #ifndef TOKEN
-#define TOKEN "BBFF-4ItEJK0VKKRz1NhGx4i96ozHVeS5Tl"  // Put here your Ubidots TOKEN
+#define TOKEN  "{Ubidots API token here}" // Put here your Ubidots API TOKEN in quotes
 #endif
 
 Ubidots ubidots(TOKEN, UBI_TCP); // Comment this line to use another protocol.
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-//char auth[] = "1kyo2H0mSGgeaRztFW3IR5EcD3YMy-Q1";  //Gunnison
-//char auth[] = "mDVsY06PwWRI9eXWMVy6xnoArZfLC-KQ";    //2021-Granby - 2020 IIC 
-//char auth[] = "Hg59VhbJ6g2gY07l2V0ZOcx4WScnVSQl";  //  2020 - Conventional and Mead
-//char auth[] = "D2msT_hTsTr2INHQy_NWDv1FwLbMEgdl"; //organic(2020), Mead (2021)
-//char auth[] = "Gl3mWBf9izqUazuFr2knQ-xpNw5IBDLL"; // AVRC1
-//char auth[] = "Bw9cvq4SNmQFsoZyY3v7O8xoDNB0A6q-"; // AVRC2
-//char auth[] = "B-CaAHOAHPpYpK9FkB840mZeVpuPJ_vB"; //AVRC3
-//char auth[] = "y-9CmPJKAx_Fk3Gh6iQY4ywbNqbgInjb"; //AVRC4
-//char auth[] = "z80eS4gZdQ-mi-K9hG09eEk0cRMPIP-O"; //Steamboat Legacy
-//char auth[] = "zFXnhi0gP3zgtQlUTWzxRA4vF-lZhYRd"; //Upper Yampa S14  
-char auth[] = "ErWSMQIG0rAWd7Gwmdqzvd-z9z5ADXwi"; // Molina
-//char auth[] = "1CIIS4DsDwyzLbTzVrnm5bM1D5iImJUd"; //S1 & S7- CT1
-//char auth[] = "2TJkCM74pS4vb7So312kah368jfOSqfP"; //S2 - MT1
-//char auth[] = "7BIrZgc_VI-Ls-Oo4aLRkzyWg1d_2d8W"; //S4 - ST1
-//char auth[] = "CwEC5jvBv5CnKU0qp3SjUrzucUiBNlQY";  //S5 - ST2
-//char auth[] = "uJJcb46cvBnrfFc31ZLLwJDiDc22b8B8";  //S6 CT2
-//char auth[] = "PiKjGPeCr5aXdAOoZiI9vPXNno-g9qKt";  //S3a MT2
+char auth[] = "{token}"; // Put your auth token here in quotes
+//char auth[] = "{token}"; // additional tokens can be commented for convenience
+//char auth[] = "{token}"; // additional tokens can be commented for convenience
 
-// Your WiFi credentials.
+
+// Your WiFi credentials if using Particle Photon instead of Paricle Boron.
 // Set password to "" for open networks.
 //char ssid[] = "csu-guest";
 //char pass[] = "";
@@ -257,27 +244,20 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
   smoothed = (4095 / smoothed) - 1; // convert to resistance
   smoothed = SERIESRESISTOR / smoothed; // convert to voltage
   
-  //convert voltage to depth 
- //depth = (-0.000008*(smoothed*smoothed)) + (0.0021*smoothed) + 32.00;  // 12.1 etape sensor
- //depth = (-0.01717*smoothed) + 69.104;  //// Gunnison 24in
- //depth = (-0.0412*smoothed) + 87.95; //18-1 (.9 was .41)
- //depth = (-0.0391*smoothed) + 86.28;// 12.2 etape sensor
- //depth = (-0.000005*(smoothed*smoothed)) + (0.0078*smoothed) + 35.00;  // 12.2 etape sensor
- //depth = (-0.0378*smoothed) + 78.509; //18-2;  //Granby _ volt to depth using linear regression calibration (etape dependent)
- //depth = (-0.0394*smoothed) + 81.848;  //// S1 12 etape sensor for CT1 2021
- //depth = (-0.0393*smoothed) + 84.015;  //// S2 12 etape sensor for MT1 2021
- //depth = (-0.039*smoothed) + 80.7152;  //// S3 12 etape sensor for ?? 2021
- //depth = (-0.0418*smoothed) + 86.818;  //// S4 12 etape sensor for ST1 2021
- //depth = (-0.0264*smoothed) + 57.8262; //18in Sample 5
- //depth = (-0.0262*smoothed) + 57.5247; //18in Sampler 6CT2
- //depth = (-0.0359*smoothed) + 76.008; //18in Sampler 3a mt2
- //depth = (-0.0222*smoothed) + 48.913; //AvRC1 
- //depth = (-0.0225*smoothed) + 50.9; //AvRC2
- //depth = (-0.0222*smoothed) + 48.913; //AvRC3
- //depth = (-0.0225*smoothed) + 50.3; //AvRC4
- depth = (-0.01695*smoothed) + 46.2695; //Molina 15in E2
- //depth = (-0.01686*smoothed) + 46.99; //Legacy (15in 2023)
- //depth = (-0.01745*smoothed) + 46.960; //Yampa (15in 2023)
+// convert voltage to depth based on custom etape linear calibration curve
+  // etape product link: https://milonetech.com/products/standard-etape
+  // etape data sheet: https://img1.wsimg.com/blobby/go/6e1bce17-f4fa-40c3-9d89-9bb7445697bb/downloads/Standard%20eTape%20Data%20Sheet.pdf 
+  
+  // Use the following equation as per the mileone etape manual guidelines
+    // depth = (A*smoothed) + B
+    // where A = (depth_2-depth_1)/(resistance_2-resistance_1) and B = depth_1 - A*resistance_1
+  // or where multiple resistances are plotted against depth and fitted with an OLS regression line
+    // depth = (slope*smoothed) + intercept
+
+
+ depth = (-0.01695*smoothed) + 46.2695; // current selected calibration
+ //depth = (-0.01686*smoothed) + 46.99; // comment other curves for convenience to use on other sampler units
+
 
   snprintf(depthString,sizeof(depthString) -1, "%4.1f cm", depth);  // convert to string
 
