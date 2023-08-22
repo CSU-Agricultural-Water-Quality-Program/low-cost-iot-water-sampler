@@ -51,25 +51,16 @@ void printStateTransition(void);
 double ReadVoltage(byte pin);
 #line 36 "c:/Users/edeleon/Documents/Particle/WaterSamplerV4/src/WaterSamplerV4.ino"
 #ifndef TOKEN
-#define TOKEN "BBFF-4ItEJK0VKKRz1NhGx4i96ozHVeS5Tl"  // Put here your Ubidots TOKEN
+#define TOKEN "{Ubidots API token here}" // Put here your Ubidots API TOKEN in quotes
 #endif
 
 Ubidots ubidots(TOKEN, UBI_TCP); // Comment this line to use another protocol.
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-//char auth[] = "Rr33UwXJx7q8RvSAJqgs4afC-0Pb3APD";
-//char auth[] = "mDVsY06PwWRI9eXWMVy6xnoArZfLC-KQ";    //2021-Granby - 2020 IIC 
-//char auth[] = "Hg59VhbJ6g2gY07l2V0ZOcx4WScnVSQl";  //  2020 - Conventional and Mead
-//char auth[] = "D2msT_hTsTr2INHQy_NWDv1FwLbMEgdl"; //organic(2020), Mead (2021)
-char auth[] = "ANbQ71uWYnhLh0IIUUpL-cmsw-ZcAYq7"; // AVRC1
-//char auth[] = "7sPTjZLgSA7v_hRr_vgfyZJ5Yf_OFIZX"; //test
-//char auth[] = "sG7fYuGjqZT7wSWlgl8v125BcT8nAA7r"; //S1 & S7- CT1
-//char auth[] = "UnZyD48sr6zarmG0pLcUquczmbg96afz"; //S2 - MT1
-//char auth[] = "ZlTvf9LAsv0x92nSHBhkTCTGpl6Mxdls"; //S4 - ST1
-//char auth[] = "LLy0DwpCPHfVdZYBOiQeY1BilXsZRO5x";  //S5
-//char auth[] = "T0e84u8fbB_ofyRqNwBRM_UWqQoZvP4c";  //S6
-//char auth[] = "s_XO774F_fB9vUjU4uUklbRhdVgUSo7l";  //S3a
+char auth[] = "{token}"; // Put your auth token here in quotes
+//char auth[] = "{token}"; // additional tokens can be commented for convenience
+//char auth[] = "{token}"; // additional tokens can be commented for convenience
 
 // Your WiFi credentials.
 // Set password to "" for open networks.

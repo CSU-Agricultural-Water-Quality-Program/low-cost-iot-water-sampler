@@ -1,17 +1,18 @@
 
 /*
-* Project: Metering water sampler System
-* Description: Use an Boron, peristaltic pump, motor driver, and non-contact water sensor 
-* to sample a user-specified volume of water on demand from a flume or water body (stream or river) 
-* and deliver to a 1-2L sample bottle inside an ice chest.  
-* This version uses Blynk for control and user inputs.
-* adapted from code written by chip mcclelland ,seeinsight.com
-* Original Author: Jay Ham
-* Modeified by: Emmanuel Deleon
-* Sponsor: Colorado State University
-* License: GPL v4
-* Date: 27 Nov 2019
-* Last Update: 20Jan2023
+* Project: Low-cost, IoT water sampler
+* Description: A low-cost, automated water sampler (LCS) with Internet of Things
+ (IoT) technology for scalable, near-real-time water quality research developed
+ by the Colorado State University Agricultural Water Quality Program
+* Table of Contents 
+ This version uses Blynk for control and user inputs.
+ adapted from code written by chip mcclelland ,seeinsight.com
+ Original Author: Jay Ham
+ Modified by: Emmanuel Deleon and A.J. Brown
+ Sponsor: Colorado State University Agricultural Water Quality Program
+ License: GPL v4
+ Date: 27 Nov 2019
+ Last Update: 22 Aug 2023
 */
 
 // v1.00 - Initial Release - Rough program outline with serial monitor// interface

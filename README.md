@@ -82,7 +82,9 @@ Figure 2.
 **Figure 2.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
 
 ## 3d-prints
-Coming soon!
+As found on our [AWQP Printables page](https://www.printables.com/@AgWaterQuality_66019):
+* [Peristaltic pump mount](https://www.printables.com/model/560168-mount-for-a-peristaltic-pump)
+* [12v alkaline battery and solar charger mount](https://www.printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
 
 ## Parts List
 Coming soon!
