@@ -13,6 +13,7 @@
  License: GPL v4
  Date: 27 Nov 2019
  Last Update: 22 Aug 2023
+ Particle Boron Firmware Target: 5.2.0
 */
 
 // v1.00 - Initial Release - Rough program outline with serial monitor// interface
@@ -23,7 +24,8 @@
 // v1.05 - coverted to particle using workbench
 // v1.06 - added etape
 // V1.07 - moved to new blynk IoT
-// V1.08 - cleaned, added variable, add temp resistance to etapeand add project to githut 
+// V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
+// V1.09 - added remote reset function
 
 #define BLYNK_PRINT Serial  // setup blynk
 #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI"
@@ -76,7 +78,6 @@ const int WATER_PIN = D4;    // pin for non contact water sensor, NPN
 const int DIR_PIN1 = D3;  // Pump1 direction HIGH or LOW
 const int STEP_PIN1 = D5;  // Pump1 start per step
 const int STEPEN_PIN1 = D2; // Enables pump1 when LOW
-
 const int VOLT_PIN = A2;     // read voltage source, 10:1 divider
 
 byte sensorPin = A0;              // declaring etpae to particle 
@@ -89,8 +90,13 @@ float depth;
 int Time_old;
 float rssi = 0.00;
 
+// Remote system reset variables
+#define DELAY_BEFORE_REBOOT 2000
+unsigned int rebootDelayMillis = DELAY_BEFORE_REBOOT;
+unsigned long rebootSync = millis();
+bool resetFlag = false;
 
-   // pump pulses required to purge lines
+// pump pulses required to purge lines
 unsigned long currentMillis, startMillis, sampleMillis,purgeMillis;
 unsigned long pulsetime, pulselast, pulseinterval; // timing variables
 unsigned long primeMillis=0;
@@ -162,11 +168,13 @@ Particle.variable("depth", depthString);
 Particle.variable("threshold", thresholdString);
 Particle.variable("next_sample_number", sample_numberString);
 Particle.variable("signal", sigString);
+
+//  Remote Reset Function Setup
+Particle.function("reset", cloudResetFunction);
     
 }  // end setup
 
-void loop() 
-{
+void loop() {
   Blynk.run();
   switch(state) { // state machine  starts here
   
@@ -230,7 +238,7 @@ void loop()
   
  } // end switch
 
-//take reading every 5 min
+// take reading every 5 min
 if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. change the "10" to change sample interval in min (1 - 59)
 
 //Collect etape measurments:
@@ -245,17 +253,16 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
   smoothed = (4095 / smoothed) - 1; // convert to resistance
   smoothed = SERIESRESISTOR / smoothed; // convert to voltage
   
-// convert voltage to depth based on custom etape linear calibration curve
-  // etape product link: https://milonetech.com/products/standard-etape
-  // etape data sheet: https://img1.wsimg.com/blobby/go/6e1bce17-f4fa-40c3-9d89-9bb7445697bb/downloads/Standard%20eTape%20Data%20Sheet.pdf 
+/* Convert voltage to depth based on custom etape linear calibration curve
+   etape product link: https://milonetech.com/products/standard-etape
+   etape data sheet: https://img1.wsimg.com/blobby/go/6e1bce17-f4fa-40c3-9d89-9bb7445697bb/downloads/Standard%20eTape%20Data%20Sheet.pdf 
   
-  // Use the following equation as per the mileone etape manual guidelines
-    // depth = (A*smoothed) + B
-    // where A = (depth_2-depth_1)/(resistance_2-resistance_1) and B = depth_1 - A*resistance_1
-  // or where multiple resistances are plotted against depth and fitted with an OLS regression line
-    // depth = (slope*smoothed) + intercept
-
-
+   Use the following equation as per the mileone etape manual guidelines
+     depth = (A*smoothed) + B
+     where A = (depth_2-depth_1)/(resistance_2-resistance_1) and B = depth_1 - A*resistance_1
+   or where multiple resistances are plotted against depth and fitted with an OLS regression line
+     depth = (slope*smoothed) + intercept
+*/
  depth = (-0.01695*smoothed) + 46.2695; // current selected calibration
  //depth = (-0.01686*smoothed) + 46.99; // comment other curves for convenience to use on other sampler units
 
@@ -280,8 +287,14 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
     bool bufferSent = false;
     bufferSent =ubidots.send();  //Send data to ubidot
     Time_old = Time.minute(); // resetting time 
+  }
 
- }
+// Remote Reset Function
+if ((resetFlag) && (millis() - rebootSync >=  rebootDelayMillis)) {
+    // do things here before reset if necessary and then push the button
+    Particle.publish("Debug", "Remote Reset Initiated", 300, PRIVATE);
+    System.reset();
+  }
 
 } // end main loop
 
@@ -423,6 +436,13 @@ double ReadVoltage(byte pin){  // read voltage on esp32 w correction
   // return -0.000000000009824 * pow(reading,3) + 0.000000016557283 * pow(reading,2) + 0.000854596860691 * reading + 0.065440348345433;
   return -0.000000000000016 * pow(reading,4) + 0.000000000118171 * pow(reading,3)- 0.000000301211691 * pow(reading,2)+ 0.001109019271794 * reading + 0.034143524634089;
 } 
+
+int cloudResetFunction(String command) { // Remote Reset Function
+    resetFlag = true;
+    rebootSync = millis();
+    return 1;
+    // You would call the function by typing “true” in the particle console
+}
 
 BLYNK_WRITE(V1)  //gets slider value from blynk
 {
