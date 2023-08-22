@@ -112,7 +112,19 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 ## Known bugs
 Coming soon!
 
+## Latest updates
+- v1.00 - Initial Release - Rough program outline with serial monitor// interface
+- v1.01 - First Working Version, debugged with keyboard input of sample volume
+- v1.02 - Uses Blynk  and WiFi for input and reporting instead of keyboard IDE
+- v1.03 - Add stats and other Blynk features, provisions for prepurge of hose
+- v1.04 - add a secound pump to the code
+- v1.05 - coverted to particle using workbench
+- v1.06 - added etape
+- V1.07 - moved to new blynk IoT
+- V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
+- V1.09 - added remote reset function
+- V1.10 - added config.h file to store sensitive info and device speicific info
+
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
-- add remote reset function to allow the user to reset the particle boron microcontroller remotely
 - make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.

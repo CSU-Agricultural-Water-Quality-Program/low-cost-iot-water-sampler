@@ -26,6 +26,7 @@
 // V1.07 - moved to new blynk IoT
 // V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
 // V1.09 - added remote reset function
+// V1.10 - added config.h file to store sensitive info and device speicific info
 
 #define BLYNK_PRINT Serial  // setup blynk
 // #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI" // commented out when using config.h
