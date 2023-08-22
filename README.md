@@ -7,6 +7,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 - [Low Cost Sampler Description](#low-cost-sampler-description)
 - [3d prints](#3d-prints)
 - [Parts List](#parts-list)
+- [How to use the code and flash assembled device](how-to-use-the-code-and-flash-assembled-device)
 - [Known Bugs](#known-bugs)
 - [Future Developments](#future-developments)
 
@@ -88,6 +89,25 @@ As found on our [AWQP Printables page](https://www.printables.com/@AgWaterQualit
 
 ## Parts List
 Coming soon!
+
+## How to use the code and flash assembled device
+### Configuration instructions
+
+For the code to run properly, you'll need to set up a `config.h` file with your API keys and other configurations.
+
+1. **Navigate to the `src` directory**:
+   - Inside the `src` directory, you will find a template file named `config_template.h`.
+
+2. **Duplicate and Rename**:
+   - Copy the `config_template.h` and rename the copied file to `config.h`.
+
+3. **Add Your API Keys and/or tokens**:
+   - Open `config.h` with a text editor of your choice. Replace the placeholders like `"YOUR_API_KEY_HERE"` with your actual API keys or other configuration details.
+
+4. **Save and Close**:
+   - After adding your details, save and close the file. Now your code should be able to run with your specific configurations.
+
+**Important**: Never commit your `config.h` with actual API keys or Tokens to public repositories to ensure the safety of your keys.
 
 ## Known bugs
 Coming soon!

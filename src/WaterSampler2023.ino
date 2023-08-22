@@ -28,7 +28,7 @@
 // V1.09 - added remote reset function
 
 #define BLYNK_PRINT Serial  // setup blynk
-#define BLYNK_TEMPLATE_ID "TMPLirZT8ePI"
+// #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI" // commented out when using config.h
 #define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
 
 //#define SERIESRESISTOR 2000    //12-in. etape resistance
@@ -41,10 +41,12 @@
 #include <QuickStats.h>
 #include <Ubidots.h> 
 #include <blynk.h>
+#include "config.h" // include config file with tokens and other private info
 
-#ifndef TOKEN
-#define TOKEN  "{Ubidots API token here}" // Put here your Ubidots API TOKEN in quotes
-#endif
+// below code not needed when using config.h file
+// #ifndef TOKEN
+// #define TOKEN  "{Ubidots API token here}" // Put here your Ubidots API TOKEN in quotes
+// #endif
 
 Ubidots ubidots(TOKEN, UBI_TCP); // Comment this line to use another protocol.
 
