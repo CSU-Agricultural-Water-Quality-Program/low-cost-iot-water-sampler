@@ -7,7 +7,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 - [Low Cost Sampler Description](#low-cost-sampler-description)
 - [3d prints](#3d-prints)
 - [Parts List](#parts-list)
-- [How to use the code and flash assembled device](how-to-use-the-code-and-flash-assembled-device)
+- [How-to guide](#how-to-guide)
 - [Known Bugs](#known-bugs)
 - [Future Developments](#future-developments)
 
@@ -22,8 +22,8 @@ encourage the adoption of Best Management Practices (BMPs) that protect surface 
 Quantifying BMP impacts on water quality, requires robust, edge-of-field (EoF) monitoring
 systems that can accurately measure flow and collect water for nutrient and sediment analysis.
 NRCS EoF standards currently require equipment that is often too costly for pragmatic and
-scalable research. To address this need, the Colorado State University Agricultural Water Quality
-Program (AWQP) has developed a low-cost, automated water sampler (LCS) with Internet of
+scalable research. To address this need, the [Colorado State University Agricultural Water Quality
+Program (AWQP)](https://waterquality.colostate.edu) has developed a low-cost, automated water sampler (LCS) with Internet of
 Things (IoT) technology for scalable, near-real-time water quality research. This work directly
 follows deliverables from an awarded NRCS Conservation Innovation Grant titled, “Next
 Generation Technology for Monitoring Edge-of-Field Water Quality in Organic Agriculture”. The
@@ -90,7 +90,16 @@ As found on our [AWQP Printables page](https://www.printables.com/@AgWaterQualit
 ## Parts List
 Coming soon!
 
-## How to use the code and flash assembled device
+## How-to guide
+More coming soon!
+1. Purchase all necessary hardware components 
+2. 3D-print necessary mounting parts
+3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=l02vAx3wxRxf_GBZ)
+4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
+5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
+6. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
+7. To be continued...
+
 ### Configuration instructions
 
 For the code to run properly, you'll need to set up a `config.h` file with your API keys and other configurations.
@@ -110,7 +119,12 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 **Important**: Never commit your `config.h` with actual API keys or Tokens to public repositories to ensure the safety of your keys.
 
 ## Known bugs
-Coming soon!
+- The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment
+- Etape readings can bounce, leading to unintentional sampling
+    - we tend to leave the trigger point at an unrealistically high number until the device *should* be sampling, then we move it down to a realistic number (e.g., 2cm)
+- Etape sensors only begin to accurately read depth at the 2" mark on the device
+    - this is a hardware issue ongoing at Mileone
+    - to circumvent this, we place the etape at -1" depths in the deployed stilling wells or other water bodies to ensure an accurate reading, then subtract 1" off of readings in post-processing for flow calculations.
 
 ## Latest updates
 - v1.00 - Initial Release - Rough program outline with serial monitor// interface
