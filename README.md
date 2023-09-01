@@ -94,7 +94,10 @@ Coming soon!
 More coming soon!
 1. Purchase all necessary hardware components 
 2. 3D-print necessary mounting parts
-3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=l02vAx3wxRxf_GBZ)
+3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
+
+[![Video](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf/maxresdefault.jpg)](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
+
 4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
 6. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
