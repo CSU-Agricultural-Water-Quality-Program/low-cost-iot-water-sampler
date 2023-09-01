@@ -103,7 +103,7 @@ More coming soon!
 6. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
 7. To be continued...
 
-### Configuration instructions
+### Configuration file instructions
 
 For the code to run properly, you'll need to set up a `config.h` file with your API keys and other configurations.
 
@@ -119,8 +119,8 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 4. **Save and Close**:
    - After adding your details, save and close the file. Now your code should be able to run with your specific configurations.
 
-[!WARNING]
-Never commit your `config.h` with actual API keys or Tokens to public repositories to ensure the safety of your keys.
+> [!WARNING]
+> Never commit your `config.h` with your actual API keys or Tokens to public repositories to ensure the privacy of your keys!
 
 ## Known bugs
 - The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment
