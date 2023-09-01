@@ -94,9 +94,9 @@ Coming soon!
 More coming soon!
 1. Purchase all necessary hardware components 
 2. 3D-print necessary mounting parts
-3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
+3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=48_7Q2wY5_0Q1-VJ)
 
-[![Video](https://img.youtube.com/vi/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf/0.jpg)](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
+[![low cost sampler installation video](./figures/youtube_img.JPG)](https://youtu.be/EDHd09EOU30?si=48_7Q2wY5_0Q1-VJ)
 
 4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
