@@ -119,7 +119,8 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 4. **Save and Close**:
    - After adding your details, save and close the file. Now your code should be able to run with your specific configurations.
 
-**Important**: Never commit your `config.h` with actual API keys or Tokens to public repositories to ensure the safety of your keys.
+[!WARNING]
+Never commit your `config.h` with actual API keys or Tokens to public repositories to ensure the safety of your keys.
 
 ## Known bugs
 - The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment
