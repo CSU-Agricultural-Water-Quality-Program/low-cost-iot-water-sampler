@@ -1,5 +1,5 @@
-# low-cost-iot-water-sampler
-A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program
+# AWQP Low-Cost Water Sampler (LCS)
+A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
 
 ## Table of Contents
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
