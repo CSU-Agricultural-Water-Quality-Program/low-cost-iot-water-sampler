@@ -96,7 +96,7 @@ More coming soon!
 2. 3D-print necessary mounting parts
 3. Assemble hardware - [Here's our video guide!](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
 
-[![Video](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf/0.jpg)](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
+[![Video](https://img.youtube.com/vi/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf/0.jpg)](https://youtu.be/EDHd09EOU30?si=cEFKtL0Bt0sjYMHf)
 
 4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
