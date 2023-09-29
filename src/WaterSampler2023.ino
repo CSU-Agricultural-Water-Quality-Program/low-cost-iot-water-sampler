@@ -8,7 +8,7 @@
  This version uses Blynk for control and user inputs.
  adapted from code written by chip mcclelland ,seeinsight.com
  Original Author: Jay Ham
- Modified by: Emmanuel Deleon and A.J. Brown
+ Modified by: Emmanuel Deleon, Dylan Casey, and A.J. Brown
  Sponsor: Colorado State University Agricultural Water Quality Program
  License: GPL v4
  Date: 27 Nov 2019
