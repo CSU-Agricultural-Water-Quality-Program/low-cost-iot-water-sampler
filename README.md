@@ -30,6 +30,9 @@ follows deliverables from an awarded NRCS Conservation Innovation Grant titled, 
 Generation Technology for Monitoring Edge-of-Field Water Quality in Organic Agriculture”. The
 CSU AWQP intends to create additional research and regulation opportunities for Colorado and beyond using this technology.
 
+![a deployed water sampler](./figures/Intro-min.JPG)
+**Figure 1.** Image of the low-cost automated water sampler (LCS) deployed at a mountain meadow hay field near Steamboat, Colorado.
+
 To learn more about AWQP, please visit [the AWQP website](https://waterquality.colostate.edu).
 
 ## Repo Contents
@@ -51,13 +54,13 @@ To learn more about AWQP, please visit [the AWQP website](https://waterquality.c
     - contains project code and library dependencies
 
 ## Low Cost Sampler Description
-The AWQP-developed LCS is comprised of six main components as shown in Figure 1: 1) a
+The AWQP-developed LCS is comprised of six main components as shown in Figure 2: 1) a
 cellular-enabled microcontroller, 2) a 12V battery and solar charger, 3) a peristaltic pump with
 tubing for water sample collection, 4) a 12V, 10W solar panel, 5) a water depth detecting sensor
 and, 6) a cooler for sample preservation.
 
 ![low-cost sampler image](./figures/LCS.png)
-**Figure 1.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a X V, X W solar panel, 5) a water depth detecting sensor, and 6) a cooler.
+**Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a X V, X W solar panel, 5) a water depth detecting sensor, and 6) a cooler.
 
 
 Like commercial models, the LCS can detect and measure water flow in an installed flume via
@@ -81,7 +84,7 @@ comparison from an irrigation event at a corn field in Fort Collins, CO in 2020 
 Figure 2.
 
 ![flow comparison graph](./figures/flowComparison.png)
-**Figure 2.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
+**Figure 3.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
 
 ## 3d-prints
 As found on our [AWQP Printables page](https://www.printables.com/@AgWaterQuality_66019):
