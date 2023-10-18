@@ -6,22 +6,19 @@
 #line 1 "c:/Users/edeleon/Documents/Particle/WaterSamplerV4/src/WaterSamplerV4.ino"
 
 /*
-* Project: Metering water sampler System
-* Description: Use an ESP32, peristaltic pump, motor driver, hall effect sensor, and non-contact water sensor 
-* to sample a user-specified volume of water on demand from a flume or water body (stream or river) 
-* and deliver to a 1-2L sample bottle inside an ice chest.  
-* This version uses Blynk for control and user inputs
-* Tested with Adafruits Huzzah32 but could be easily adapted to  other mc
-* Uses a state machine framework, adapted from code written by chip mcclelland ,seeinsight.com
-* Pump rotations measured by hall effect sensor and magnet glued to rotating gear
-* Non contact water sensor in tubing at inlet to sample bottle 
-* Uses 10:1 volt divider to measure power supply
-* Original Author: Jay Ham
-* Modeified by: Emmanuel Deleon
-* Sponsor: Colorado State University
-* License: GPL v4
-* Date: 27 Nov 2019
-* Last Update: 5July2020
+Project: Low-cost, IoT water sampler
+Description: A low-cost, automated water sampler (LCS) with Internet of Things
+ (IoT) technology for scalable, near-real-time water quality research developed
+ by the Colorado State University Agricultural Water Quality Program
+ This version uses Blynk for control and user inputs.
+ adapted from code written by chip mcclelland ,seeinsight.com
+ Original Author: Emmanuel Deleon
+Modified by: Dylan Casey, and A.J. Brown
+Sponsor: Colorado State University Agricultural Water Quality Program
+License: GPL v2
+Created Date: 27 Nov 2019
+Last Update: 18 Oct 2023
+Particle Boron Firmware Target: 5.2.0
 */
 
 // v1.00 - Initial Release - Rough program outline with serial monitor// interface
@@ -31,6 +28,10 @@
 // v1.04 - add a secound pump to the code
 // v1.05 - coverted to particle using workbench
 // v1.06 - added etape
+// V1.07 - moved to new blynk IoT
+// V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
+// V1.09 - added remote reset function
+// V1.10 - added config.h file to store sensitive info and device speicific info
 
 
 #include <blynk.h>

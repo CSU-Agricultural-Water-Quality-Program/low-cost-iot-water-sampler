@@ -1,19 +1,18 @@
 
 /*
-* Project: Low-cost, IoT water sampler
-* Description: A low-cost, automated water sampler (LCS) with Internet of Things
+Project: Low-cost, IoT water sampler
+Description: A low-cost, automated water sampler (LCS) with Internet of Things
  (IoT) technology for scalable, near-real-time water quality research developed
  by the Colorado State University Agricultural Water Quality Program
-* Table of Contents 
  This version uses Blynk for control and user inputs.
  adapted from code written by chip mcclelland ,seeinsight.com
- Original Author: Jay Ham
- Modified by: Emmanuel Deleon, Dylan Casey, and A.J. Brown
- Sponsor: Colorado State University Agricultural Water Quality Program
- License: GPL v4
- Date: 27 Nov 2019
- Last Update: 22 Aug 2023
- Particle Boron Firmware Target: 5.2.0
+ Original Author: Emmanuel Deleon
+Modified by: Dylan Casey, and A.J. Brown
+Sponsor: Colorado State University Agricultural Water Quality Program
+License: GPL v2
+Created Date: 27 Nov 2019
+Last Update: 18 Oct 2023
+Particle Boron Firmware Target: 5.2.0
 */
 
 // v1.00 - Initial Release - Rough program outline with serial monitor// interface
