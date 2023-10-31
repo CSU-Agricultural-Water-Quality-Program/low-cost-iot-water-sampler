@@ -35,7 +35,7 @@ Generation Technology for Monitoring Edge-of-Field Water Quality in Organic Agri
 CSU AWQP intends to create additional research and regulation opportunities for Colorado and beyond using this technology.
 
 ![a deployed water sampler](./figures/Intro-min.JPG)
-**Figure 1.** Image of the low-cost automated water sampler (LCS) deployed at a mountain meadow hay field near Steamboat, Colorado.
+**Figure 1.** Image of the low-cost automated water sampler (LCS) deployed at a mountain meadow hay field near Steamboat Springs, Colorado.
 
 To learn more about AWQP, please visit [the AWQP website](https://waterquality.colostate.edu).
 
