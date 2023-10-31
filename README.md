@@ -1,9 +1,9 @@
 [![AWQP Logo](./figures/AWQP_horizontal_rounded.png)](https://waterquality.colostate.edu)
-# AWQP Low-Cost IoT Water Sampler (LCS)
+# Low-Cost IoT Water Sampler
 A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
 
 > [!NOTE]
-> This project is actively undergoing development and updates. Code, parts, instructions, and other content are subject to change as we enhance the Low-Cost Water Sampler. We recommend checking back frequently for the most up-to-date information and resources. We appreciate your understanding and interest in the AWQP Low-Cost IoT Water Sampler.
+> This project is actively undergoing development and updates. Code, parts, instructions, and other content are subject to change as we enhance the Low-Cost IoT Water Sampler. We recommend checking back frequently for the most up-to-date information and resources. We appreciate your understanding and interest.
 
 ## Table of Contents
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
@@ -14,6 +14,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 - [How-to guide](#how-to-guide)
 - [Known Bugs](#known-bugs)
 - [Future Developments](#future-developments)
+- [How to Cite](#how-to-cite)
 
 ---
 
@@ -177,5 +178,20 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
 - make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.
+
+## How to Cite
+
+If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it proves helpful in your work, please consider citing it. Here is how you can cite this repository using Bibtex formatting below:
+
+```bibtex
+@misc{awqp_lcs_2023,
+  author       = {Ansley Brown and Emmanuel Deleon and Erik Wardle and Troy Bauder and Dylan Casey and Jay Ham and Mark Uchanski},
+  title        = {Low-Cost IoT Water Sampler},
+  month        = October,
+  year         = 2023,
+  doi          = {10.5281/zenodo.YOUR_DOI},
+  url          = {https://doi.org/10.5281/zenodo.YOUR_DOI}
+}
+```
 
 Copyright © 2023 Colorado State University Agricultural Water Quality Program. All rights reserved.
