@@ -186,10 +186,12 @@ If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it p
 ```bibtex
 @misc{awqp_lcs_2023,
   author       = {Ansley Brown and Emmanuel Deleon and Erik Wardle and Troy Bauder and Dylan Casey and Jay Ham and Mark Uchanski},
-  title        = {Low-Cost IoT Water Sampler},
-  month        = October,
+  title        = {{Low-Cost IoT Water Sampler}},
+  month        = oct,
   year         = 2023,
+  note         = {Version 1.1},
   doi          = {10.5281/zenodo.YOUR_DOI},
+  publisher    = {Zenodo},
   url          = {https://doi.org/10.5281/zenodo.YOUR_DOI}
 }
 ```
