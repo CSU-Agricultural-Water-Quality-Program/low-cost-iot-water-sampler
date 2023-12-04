@@ -198,7 +198,7 @@ If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it p
   title        = {{Low-Cost IoT Water Sampler}},
   month        = nov,
   year         = 2023,
-  note         = {Version 1.1},
+  note         = {Version 1.10},
   doi          = {10.5281/zenodo.10257622},
   publisher    = {Zenodo},
   url          = {https://zenodo.org/doi/10.5281/zenodo.10257622}
