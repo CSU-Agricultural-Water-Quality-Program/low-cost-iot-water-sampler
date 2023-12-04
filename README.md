@@ -1,9 +1,12 @@
 [![AWQP Logo](./figures/AWQP_horizontal_rounded.png)](https://waterquality.colostate.edu)
+
+[![DOI](https://zenodo.org/badge/681357586.svg)](https://zenodo.org/doi/10.5281/zenodo.10257622)
+
 # Low-Cost IoT Water Sampler
 A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
 
 > [!NOTE]
-> This project is actively under development. Code, parts, instructions, and other content are subject to change as we enhance the LCS. If you download/clone/fork this repository, we ask that you **please [email us directly](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub)** for the most up-to-date information and resources. We will also email you with any news related to the projct moving forward!
+> This project is actively under development. Code, parts, instructions, and other content are subject to change as we enhance the LCS. If you download/clone/fork this repository, we ask that you **please [email us directly](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub)** for the most up-to-date information and resources. We will also email you with any news related to the project moving forward!
 
 ## Table of Contents
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
@@ -187,7 +190,7 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 
 ## How to Cite
 
-If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it proves helpful in your work, please consider citing it. Here is how you can cite this repository using Bibtex formatting below:
+If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it proves helpful in your work, please consider citing it. a [CITATION.cff](CITATION.cff) file is provided, or you can use the following BibTeX entry:
 
 ```bibtex
 @misc{awqp_lcs_2023,
@@ -196,9 +199,9 @@ If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it p
   month        = nov,
   year         = 2023,
   note         = {Version 1.1},
-  doi          = {10.5281/zenodo.YOUR_DOI},
+  doi          = {10.5281/zenodo.10257622},
   publisher    = {Zenodo},
-  url          = {https://doi.org/10.5281/zenodo.YOUR_DOI}
+  url          = {https://zenodo.org/doi/10.5281/zenodo.10257622}
 }
 ```
 
