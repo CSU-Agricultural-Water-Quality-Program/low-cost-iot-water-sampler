@@ -3,7 +3,7 @@
 A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
 
 > [!NOTE]
-> This project is actively undergoing development and updates. Code, parts, instructions, and other content are subject to change as we enhance the Low-Cost IoT Water Sampler. We recommend checking back frequently or [emailing us directly](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub) for the most up-to-date information and resources. We appreciate your understanding and interest.
+> This project is actively under development. Code, parts, instructions, and other content are subject to change as we enhance the LCS. If you download/clone/fork this repository, we ask that you **please [email us directly](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub)** for the most up-to-date information and resources. We will also email you with any news related to the projct moving forward!
 
 ## Table of Contents
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
@@ -92,9 +92,9 @@ Figure 2.
 **Figure 3.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
 
 ## 3d-prints
-As found on our [AWQP Printables page](https://www.printables.com/@AgWaterQuality_66019):
-* [Peristaltic pump mount](https://www.printables.com/model/560168-mount-for-a-peristaltic-pump)
-* [12v alkaline battery and solar charger mount](https://www.printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
+As found on our [AWQP Printables page](https://printables.com/@AgWaterQuality_66019):
+* [Peristaltic pump mount](https://printables.com/model/560168-mount-for-a-peristaltic-pump)
+* [12v alkaline battery and solar charger mount](https://printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
 
 ## Parts List
 Please [contact the AWQP](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub) for the most current part list; these are often changing and being updated as improvements get implemented!
@@ -123,7 +123,9 @@ Current list updated 4 December 2023:
 | Bulkhead 1/4″ Straight Adapter 1/4″ ID x 1/4″ ID in Medical...  | Tubing Adapter            | $2.00         | 2                 | $4.00               | [Eldon James](https://eldonjames.com/product/bh4s-4-4mn-qc/)                                           |
 | PVC Tubing 1/4"ID X 3/8"OD Flexible Clear Vinyl Hose 100 Feet... | Tubing                    |               |                   |                     | [Amazon](https://www.amazon.com/gp/product/B07WCM9B9H/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)   |
 | Beduan Pneumatic Plastic Bulkhead Union Fitting 6mm Tube OD x 6mm | Bulkhead Fitting           | $10.98        | 1                 | $10.98              | [Amazon](https://www.amazon.com/gp/product/B07MLL1TNP/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)    |
-| Bottles                                                          | 2L Bottle                 | $30.00        | 2                 | $60.00              | [US Plastic](https://
+| Bottles                                                          | 2L Bottle                 | $30.00        | 2                 | $60.00              | [US Plastic](https://www.usplastic.com/catalog/item.aspx?itemid=34227&v1=&v7=&gad_source=1&gclid=Cj0KCQiAgqGrBhDtARIsAM5s0_lNtdxKP6RPs_ngv4Kppt8AFrtlITrcvWsjd5ZQKeNmv4hUJ4Kuh4waAuoAEALw_wcB)
+| 10 Volt Solar Panel                                               | Solar Panel               | $25.00        | 1                 | $25.00              | [Amazon](https://www.amazon.com/gp/product/B00OZC3X1C/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)   |
+|                                           |                       | **Estimated Total**       | **$652.39**   |                   |                     |
 
 
 ## How-to guide
