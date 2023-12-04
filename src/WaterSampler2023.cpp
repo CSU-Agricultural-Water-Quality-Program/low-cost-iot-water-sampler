@@ -65,18 +65,8 @@ char auth[] = "{token}"; // Put your auth token here in quotes
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-//char ssid[] = "NETGEAR51";
-//char pass[] = "coolkayak717";
-
-// Your WiFi credentials.
-// Set password to "" for open networks.
 //char ssid[] = "csu-guest";
 //char pass[] = "";
-
-// Your WiFi credentials.
-// Set password to "" for open networks.
-//char ssid[] = "HOME-D289-2.4";
-//char pass[] = "393T4UC43YA44CU3";
 
 // state machine variables
 enum State { INITIALIZATION_STATE, ERROR_STATE, IDLE_STATE, PRIME_STATE, SAMPLE_STATE, PURGE_STATE, REPORTING_STATE};
