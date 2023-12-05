@@ -1,4 +1,7 @@
-// config_template.h
+// configuration file for the API keys and other sensitive information
+// Created by A.J. Brown, 22 August 2023
 
-#define API_KEY "YOUR_API_KEY_HERE"
-#define OTHER_API_KEY "YOUR_OTHER_API_KEY_HERE"
+// NOTE: rename this file to config.h and update the values below
+
+#define TOKEN "{YOUR TOKEN HERE}"  // Ubidots TOKEN
+#define BLYNK_TEMPLATE_ID "{YOUR TOKEN HERE}" // Blynk Template ID

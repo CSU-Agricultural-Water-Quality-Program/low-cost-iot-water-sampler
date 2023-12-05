@@ -43,16 +43,19 @@ Particle Boron Firmware Target: 5.2.0
 #include <blynk.h>
 #include "config.h" // include config file with tokens and other private info
 
-// below code not needed when using config.h file
-// #ifndef TOKEN
-// #define TOKEN  "{Ubidots API token here}" // Put here your Ubidots API TOKEN in quotes
-// #endif
+/*
+// below code not needed when using config.h file, but you can uncomment and use
+// this code instead if config.h isn't working for you.
+#ifndef TOKEN
+#define TOKEN  "{Ubidots API token here}" // Put your Ubidots API TOKEN here
+#endif
+*/
 
 Ubidots ubidots(TOKEN, UBI_TCP); // Comment this line to use another protocol.
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = "{token}"; // Put your auth token here in quotes
+char auth[] = BLYNK_TEMPLATE_ID; // Blynk token from config.h file
 //char auth[] = "{token}"; // additional tokens can be commented for convenience
 //char auth[] = "{token}"; // additional tokens can be commented for convenience
 
