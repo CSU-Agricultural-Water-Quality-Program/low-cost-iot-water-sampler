@@ -187,6 +187,8 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
 - make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.
+- add a "tube length" variable in the blynk app to calculate water needed to prime the pump prior to sampling.
+- compare etape calibration data to see if a universal calibration equation can be developed instead of having individual calibration equations for each device
 
 ## How to Cite
 
