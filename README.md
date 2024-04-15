@@ -210,6 +210,6 @@ If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it p
 ## License
 This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 2 (GNU GPL V2.0) - see the [LICENSE.md](LICENSE.md) file for details.
 
-**Permissive Commercial License also available, please [contact us](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub) if interested.**
+**Please visit [CSU STRATA's website](https://csustrata.org/technology-transfer/available-technology/low-cost-automated-water-sampler/) to inquire about a permissive commercial license for this project, and use the [contact form on that page](https://csustrata.org/technology-contact-2024-035/) for initiating that discussion.**
 
 Copyright © 2023 Colorado State University Agricultural Water Quality Program. All rights reserved.
