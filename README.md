@@ -68,7 +68,7 @@ tubing for water sample collection, 4) a 12V, 10W solar panel, 5) a water depth 
 and, 6) a cooler for sample preservation.
 
 ![low-cost sampler image](./figures/LCS.png)
-**Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a X V, X W solar panel, 5) a water depth detecting sensor, and 6) a cooler.
+**Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a 12 V, 10 W solar panel, 5) a water depth detecting sensor, and 6) a cooler for sample preservation.
 
 
 Like commercial models, the LCS can detect and measure water flow in an installed flume via
@@ -127,7 +127,7 @@ Current list updated 4 December 2023:
 | PVC Tubing 1/4"ID X 3/8"OD Flexible Clear Vinyl Hose 100 Feet... | Tubing                    |               |                   |                     | [Amazon](https://www.amazon.com/gp/product/B07WCM9B9H/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)   |
 | Beduan Pneumatic Plastic Bulkhead Union Fitting 6mm Tube OD x 6mm | Bulkhead Fitting           | $10.98        | 1                 | $10.98              | [Amazon](https://www.amazon.com/gp/product/B07MLL1TNP/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)    |
 | Bottles                                                          | 2L Bottle                 | $30.00        | 2                 | $60.00              | [US Plastic](https://www.usplastic.com/catalog/item.aspx?itemid=34227&v1=&v7=&gad_source=1&gclid=Cj0KCQiAgqGrBhDtARIsAM5s0_lNtdxKP6RPs_ngv4Kppt8AFrtlITrcvWsjd5ZQKeNmv4hUJ4Kuh4waAuoAEALw_wcB)
-| 10 Volt Solar Panel                                               | Solar Panel               | $25.00        | 1                 | $25.00              | [Amazon](https://www.amazon.com/gp/product/B00OZC3X1C/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)   |
+| 12 Volt Solar Panel                                               | Solar Panel               | $25.00        | 1                 | $25.00              | [Amazon](https://www.amazon.com/gp/product/B00OZC3X1C/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)   |
 |                                           |                       | **Estimated Total**       | **$652.39**   |                   |                     |
 
 
