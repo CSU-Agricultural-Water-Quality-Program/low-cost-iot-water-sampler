@@ -26,6 +26,7 @@ Particle Boron Firmware Target: 5.2.0
 // V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
 // V1.09 - added remote reset function
 // V1.10 - added config.h file to store sensitive info and device speicific info
+// V1.11 - migrated blynk functions to particle functions to eliminate blynk
 
 #define BLYNK_PRINT Serial  // setup blynk
 // #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI" // commented out when using config.h
@@ -102,7 +103,7 @@ unsigned long rebootSync = millis();
 bool resetFlag = false;
 
 // pump pulses required to purge lines
-unsigned long currentMillis, startMillis, sampleMillis,purgeMillis;
+unsigned long currentMillis, startMillis, sampleMillis, purgeMillis;
 unsigned long pulsetime, pulselast, pulseinterval; // timing variables
 unsigned long primeMillis=0;
 unsigned long maxprimeMillis=30*1000;   // max allowable pumping time to prime, e.g.30s
@@ -125,7 +126,7 @@ unsigned int sample_number = 1;
 int threshold = 7;
 int sample_bottle_mL = 4500;
 
-boolean sample_now =false;
+boolean sample_now = false;
 
 AccelStepper stepper1 = AccelStepper(motorInterfaceType, STEP_PIN1, DIR_PIN1);
 
@@ -138,7 +139,7 @@ QuickStats stats; //initialize an instance of this class
 void setup() {
   
   Serial.begin(9600); // opens serial port, sets data rate to 9600 bps
-    // connect to blynk
+  // connect to blynk
   //Particle.keepAlive(PARTICLE_KEEPALIVE);
   delay(2000);
   Blynk.begin(auth);
@@ -168,17 +169,26 @@ void setup() {
   
   sample_interval_ms = sample_interval_min * 60 * 1000;
 
-// Particle variables for Particle app
-Particle.variable("depth", depthString); 
-Particle.variable("threshold", thresholdString);
-Particle.variable("next_sample_number", sample_numberString);
-Particle.variable("signal", sigString);
+  // Particle variables for Particle app
+  Particle.variable("depth", depthString); 
+  Particle.variable("threshold", thresholdString);
+  Particle.variable("next_sample_number", sample_numberString);
+  Particle.variable("signal", sigString);
+  Particle.variable("prime ml", primeMillis/1000);
+  Particle.variable("sample ml", sampleMillis/1000);
+  Particle.variable("purge ml", purgeMillis/1000);
 
-//  Remote Reset Function Setup
-Particle.function("reset", cloudResetFunction);
+  // Particle functions
+  //  Remote Reset Function Setup
+  Particle.function("reset", cloudResetFunction);
+  Particle.function("setCollectVolume", setCollectVolume);
+  Particle.function("setCollectInterval", setCollectInterval);
+  Particle.function("setCollectThreshold", setCollectThreshold);
+  Particle.function("setBottleVolume", setBottleVolume);
     
-}  // end setup
+} // end setup
 
+// begin loop
 void loop() {
   Blynk.run();
   switch(state) { // state machine  starts here
@@ -196,7 +206,7 @@ void loop() {
       state = ERROR_STATE;
      }
     else state = SAMPLE_STATE;
-  break;
+    break;
 
   case SAMPLE_STATE:
     if (state != oldState) printStateTransition();
@@ -207,10 +217,9 @@ void loop() {
     else state = PURGE_STATE;
     
     Blynk.virtualWrite(V2, sample_number);
-  
-  break;
+    break;
 
- case PURGE_STATE:
+  case PURGE_STATE:
    if (state != oldState) printStateTransition();
    if (!purgeSystem())
     {
@@ -220,7 +229,7 @@ void loop() {
     state = REPORTING_STATE;
    break;
   
- case REPORTING_STATE:
+  case REPORTING_STATE:
    if (state != oldState) printStateTransition();
    if (!reportingData())
    {
@@ -232,77 +241,83 @@ void loop() {
     sample_now=false;
     state = IDLE_STATE;
    }
- break; 
+   break; 
  
- case ERROR_STATE:                                                   // To be enhanced - where we deal with errors
-    if (state != oldState) printStateTransition();
-    //Serial.println("Halted in error state");
-    Blynk.virtualWrite(V2, "Halted in error state\n");
-    while(1);  // halt
- break;
+  case ERROR_STATE:                                                   // To be enhanced - where we deal with errors
+   if (state != oldState) printStateTransition();
+   //Serial.println("Halted in error state");
+   Blynk.virtualWrite(V2, "Halted in error state\n");
+   while(1);  // halt
+   break;
   
- } // end switch
+  } // end switch
 
-// take reading every 5 min
-if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. change the "10" to change sample interval in min (1 - 59)
+  // take reading every 5 min
+  if(Time.minute() % 5 == 0 && Time_old != Time.minute()) { //read every 20 min. change the "10" to change sample interval in min (1 - 59)
 
-//Collect etape measurments:
-  for(int i=0;i<NUMSAMPLES;i++){
-    v=analogRead(sensorPin);
-    measurements[i]=(v); // convert to volts
-    delay(10);  // Change (or remove) this delay value to alter the sampling time span.
-  }  
-  smoothed = stats.median(measurements,NUMSAMPLES); // Median filter (choose which filter to use)
-  //smoothed=stats.average(measurements,NUMSAMPLES); // Mean filter 
-  //smoothedCV=stats.CV(measurements,NUMSAMPLES); // CV of readings  
-  smoothed = (4095 / smoothed) - 1; // convert to resistance
-  smoothed = SERIESRESISTOR / smoothed; // convert to voltage
+    //Collect etape measurments:
+    for(int i=0;i<NUMSAMPLES;i++){
+      v=analogRead(sensorPin);
+      measurements[i]=(v); // convert to volts
+      delay(10);  // Change (or remove) this delay value to alter the sampling time span.
+    }
+    // smooth noisy data by using median response  
+    smoothed = stats.median(measurements,NUMSAMPLES); // Median filter (choose which filter to use)
+    //smoothed=stats.average(measurements,NUMSAMPLES); // Mean filter 
+    //smoothedCV=stats.CV(measurements,NUMSAMPLES); // CV of readings  
+    smoothed = (4095 / smoothed) - 1; // convert to resistance
+    smoothed = SERIESRESISTOR / smoothed; // convert to voltage
+    
+    /* Convert voltage to depth based on custom etape linear calibration curve
+      etape product link: https://milonetech.com/products/standard-etape
+      etape data sheet: https://img1.wsimg.com/blobby/go/6e1bce17-f4fa-40c3-9d89-9bb7445697bb/downloads/Standard%20eTape%20Data%20Sheet.pdf 
+      
+      Use the following equation as per the mileone etape manual guidelines
+        depth = (A*smoothed) + B
+        where A = (depth_2-depth_1)/(resistance_2-resistance_1) and B = depth_1 - A*resistance_1
+      or where multiple resistances are plotted against depth and fitted with an OLS regression line
+        depth = (slope*smoothed) + intercept
+    */
+    depth = (-0.01695*smoothed) + 46.2695; // current selected calibration
+    //depth = (-0.01686*smoothed) + 46.99; // comment other curves for convenience to use on other sampler units
+
+
+    snprintf(depthString,sizeof(depthString) -1, "%4.1f cm", depth);  // convert to string
+
+    CellularSignal sig = Cellular.RSSI(); // get signal strength
+    rssi = sig.getQuality();
+    float strength = sig.getStrength();
+    snprintf(sigString,sizeof(sigString), "%.02f %", strength);
   
-/* Convert voltage to depth based on custom etape linear calibration curve
-   etape product link: https://milonetech.com/products/standard-etape
-   etape data sheet: https://img1.wsimg.com/blobby/go/6e1bce17-f4fa-40c3-9d89-9bb7445697bb/downloads/Standard%20eTape%20Data%20Sheet.pdf 
+    //FuelGauge fuel;
+      // float voltage = fuel.getVCell();
+      // float SoC = fuel.getSoC();
   
-   Use the following equation as per the mileone etape manual guidelines
-     depth = (A*smoothed) + B
-     where A = (depth_2-depth_1)/(resistance_2-resistance_1) and B = depth_1 - A*resistance_1
-   or where multiple resistances are plotted against depth and fitted with an OLS regression line
-     depth = (slope*smoothed) + intercept
-*/
- depth = (-0.01695*smoothed) + 46.2695; // current selected calibration
- //depth = (-0.01686*smoothed) + 46.99; // comment other curves for convenience to use on other sampler units
-
-
-  snprintf(depthString,sizeof(depthString) -1, "%4.1f cm", depth);  // convert to string
-
-  CellularSignal sig = Cellular.RSSI(); // get signal strength
-  rssi = sig.getQuality();
-  float strength = sig.getStrength();
-  snprintf(sigString,sizeof(sigString), "%.02f %", strength);
- 
- //FuelGauge fuel;
-  // float voltage = fuel.getVCell();
-  // float SoC = fuel.getSoC();
- 
-  ubidots.add("Level_cm", depth);  // send data to ubidots
-  //ubidots.add("Volts", voltage);
-  //ubidots.add("SoC", SoC);
-  //ubidots.add("Rssi", rssi);
-  ubidots.add("SigS", strength);
- 
-    bool bufferSent = false;
-    bufferSent =ubidots.send();  //Send data to ubidot
-    Time_old = Time.minute(); // resetting time 
+    ubidots.add("Level_cm", depth);  // send data to ubidots
+    //ubidots.add("Volts", voltage);
+    //ubidots.add("SoC", SoC);
+    //ubidots.add("Rssi", rssi);
+    ubidots.add("SigS", strength);
+  
+      bool bufferSent = false;
+      bufferSent =ubidots.send();  //Send data to ubidot
+      Time_old = Time.minute(); // resetting time 
   }
 
-// Remote Reset Function
-if ((resetFlag) && (millis() - rebootSync >=  rebootDelayMillis)) {
+  // Remote Reset Function
+  if ((resetFlag) && (millis() - rebootSync >=  rebootDelayMillis)) {
     // do things here before reset if necessary and then push the button
     Particle.publish("Debug", "Remote Reset Initiated", 300, PRIVATE);
     System.reset();
   }
 
-} // end main loop
+  // Take sample now function
+  if (sample_now) {
+    Particle.publish("User input received: Sampling Now");
+  }
+} // end loop
 
+// subroutines
 bool primeSystem() {    // prime system with water 
    //digitalWrite(DIR_PIN, HIGH);  // Pump forward
    digitalWrite(STEPEN_PIN1, LOW); // Pump on
@@ -410,6 +425,7 @@ bool purgeSystem() {  // reverse pump and purge water lines of all water
    else return 0;   // purge failed
 }
 
+// This function may not be needed after we eliminate Blynk...
 bool reportingData() {  // send data to Blynk
 
   Blynk.virtualWrite(10, float(volCal1*sampleSteps)); // virtual pin 
@@ -421,36 +437,29 @@ bool reportingData() {  // send data to Blynk
   Blynk.virtualWrite(16, float(purgeMillis)/1000); // virtual pin
   Blynk.virtualWrite(17, depth); // virtual pin
   //Blynk.virtualWrite(18, battVolt); // virtual pin
-
   return 1;
 }
 
-void printStateTransition(void)   // print transition from one state to another
-{
+void printStateTransition(void) {  // print transition from one state to another
   char stateTransitionString[40];
   snprintf(stateTransitionString, sizeof(stateTransitionString), "From %s to %s", stateNames[oldState],stateNames[state]);
   oldState = state;
   Serial.println(stateTransitionString);
   Blynk.virtualWrite(V2, stateTransitionString);
   Blynk.virtualWrite(V2, "\n");
+
+  // Replicate above using particle
+  Particle.publish("State Transition: ", stateTransitionString);
 }
 
-double ReadVoltage(byte pin){  // read voltage on esp32 w correction
+double ReadVoltage(byte pin) {  // read voltage on esp32 w correction
   double reading = analogRead(pin); // Reference voltage is 3v3 so maximum reading is 3v3 = 4095 in range 0 to 4095
   if(reading < 1 || reading > 4095) return 0;
   // return -0.000000000009824 * pow(reading,3) + 0.000000016557283 * pow(reading,2) + 0.000854596860691 * reading + 0.065440348345433;
   return -0.000000000000016 * pow(reading,4) + 0.000000000118171 * pow(reading,3)- 0.000000301211691 * pow(reading,2)+ 0.001109019271794 * reading + 0.034143524634089;
 } 
-
-int cloudResetFunction(String command) { // Remote Reset Function
-    resetFlag = true;
-    rebootSync = millis();
-    return 1;
-    // You would call the function by typing “true” in the particle console
-}
-
-BLYNK_WRITE(V1)  //gets slider value from blynk
-{
+// TODO: each of these blynk write fxns below will need to become a particle fxn
+BLYNK_WRITE(V1) { //gets collection volume slider value from blynk
   float pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
   ml_to_collect  = pinValue;
   //Serial.print("ml_to_collect: ");Serial.println(ml_to_collect);
@@ -460,8 +469,7 @@ BLYNK_WRITE(V1)  //gets slider value from blynk
   Blynk.virtualWrite(V2, " mL\n");  
 }
 
-BLYNK_WRITE(V3)  //gets slider value from blynk
-{
+BLYNK_WRITE(V3) { //gets sample interval slider value from blynk
   int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
   sample_interval_min  = pinValue;	// desired sample interval in minutes
   sample_interval_ms = sample_interval_min * 60 * 1000;
@@ -471,8 +479,7 @@ BLYNK_WRITE(V3)  //gets slider value from blynk
   Blynk.virtualWrite(V2, " min\n");
 }
 
-BLYNK_WRITE(V4)  //gets slider value from blynk
-{
+BLYNK_WRITE(V4) { //gets threshold slider value from blynk
   int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
   threshold  = pinValue; // depth threshold (cm) for autosampler to begin sample collection
   Blynk.virtualWrite(14, threshold); // virtual pin
@@ -481,8 +488,7 @@ BLYNK_WRITE(V4)  //gets slider value from blynk
   Blynk.virtualWrite(V2, " cm\n"); 
 }
 
-BLYNK_WRITE(V5)  //gets slider value from blynk
-{
+BLYNK_WRITE(V5) { //gets bottle volume slider value from blynk
   int pinValue = param.asInt(); // assigning incoming value from pin V1 to a variable
   sample_bottle_mL  = pinValue; // sample bottle volume in mL
   Blynk.virtualWrite(15, sample_bottle_mL); // virtual pin 
@@ -491,9 +497,48 @@ BLYNK_WRITE(V5)  //gets slider value from blynk
   Blynk.virtualWrite(V2, " mL\n");
 }
 
-BLYNK_WRITE(V9) // get button value from blynk
-{
+BLYNK_WRITE(V9) { // get button value from blynk
   int pinValue = param.asInt();
   sample_now=pinValue;
- // Serial.print("sample_now: ");Serial.println(sample_now);
+  // Serial.print("sample_now: ");Serial.println(sample_now);
+}
+
+// Adding particle fxn's to replace Blynk here
+// remote reset
+int cloudResetFunction(String command) {
+  resetFlag = true;
+  rebootSync = millis();
+  return 1;
+  // You would call the function by typing “true” in the particle console
+}
+
+// set collection volume (mL)
+int setCollectVolume(String args) {
+  ml_to_collect = args.toFloat();
+  return 1;
+}
+
+// set sample interval (min)
+int setCollectInterval(String args) {
+  sample_interval_min  = args.toFloat();	// desired sample interval in minutes
+  sample_interval_ms = sample_interval_min * 60 * 1000;
+  return 1;
+}
+
+// set water depth collection trigger/threshold (cm)
+int setCollectThreshold(String args) {
+  threshold = args.toFloat();
+  return 1;
+}
+
+// set sample bottle volume
+int setBottleVolume(String args) {
+  sample_bottle_mL  = args.toFloat();
+  return 1;
+}
+
+// take sample now
+int setBottleVolume(String command) {
+  sample_now = true;
+  return 1;
 }
