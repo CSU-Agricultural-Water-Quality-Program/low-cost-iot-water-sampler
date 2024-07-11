@@ -185,6 +185,7 @@ void setup() {
   Particle.function("setCollectInterval", setCollectInterval);
   Particle.function("setCollectThreshold", setCollectThreshold);
   Particle.function("setBottleVolume", setBottleVolume);
+  Particle.function("sampleNow", sampleNow);
     
 } // end setup
 
@@ -192,58 +193,57 @@ void setup() {
 void loop() {
   Blynk.run();
   switch(state) { // state machine  starts here
-  
-  case IDLE_STATE:
-   if (state != oldState) printStateTransition();
-   if (ml_to_collect>0 && check_sample_interval()==1 && depth >= threshold && check_sample_number()==1) state = PRIME_STATE;
-   else if (ml_to_collect>0 && sample_now) state = PRIME_STATE;
-   break;
-
-  case PRIME_STATE:
+    case IDLE_STATE:
     if (state != oldState) printStateTransition();
-    if (!primeSystem())
-    {
-      state = ERROR_STATE;
-     }
-    else state = SAMPLE_STATE;
+    if (ml_to_collect>0 && check_sample_interval()==1 && depth >= threshold && check_sample_number()==1) state = PRIME_STATE;
+    else if (ml_to_collect>0 && sample_now) state = PRIME_STATE;
     break;
 
-  case SAMPLE_STATE:
+    case PRIME_STATE:
+      if (state != oldState) printStateTransition();
+      if (!primeSystem())
+      {
+        state = ERROR_STATE;
+      }
+      else state = SAMPLE_STATE;
+      break;
+
+    case SAMPLE_STATE:
+      if (state != oldState) printStateTransition();
+      if (!collectSample())
+      {
+        state = ERROR_STATE;
+      }
+      else state = PURGE_STATE;
+      
+      Blynk.virtualWrite(V2, sample_number);
+      break;
+
+    case PURGE_STATE:
     if (state != oldState) printStateTransition();
-    if (!collectSample())
-    {
-      state = ERROR_STATE;
-    }
-    else state = PURGE_STATE;
+    if (!purgeSystem())
+      {
+        state = ERROR_STATE;
+      }
+      else 
+      state = REPORTING_STATE;
+    break;
     
-    Blynk.virtualWrite(V2, sample_number);
-    break;
-
-  case PURGE_STATE:
-   if (state != oldState) printStateTransition();
-   if (!purgeSystem())
+    case REPORTING_STATE:
+    if (state != oldState) printStateTransition();
+    if (!reportingData())
     {
       state = ERROR_STATE;
     }
     else 
-    state = REPORTING_STATE;
-   break;
+    {
+      //ml_to_collect=0;
+      sample_now=false;
+      state = IDLE_STATE;
+    }
+    break; 
   
-  case REPORTING_STATE:
-   if (state != oldState) printStateTransition();
-   if (!reportingData())
-   {
-     state = ERROR_STATE;
-   }
-   else 
-   {
-    //ml_to_collect=0;
-    sample_now=false;
-    state = IDLE_STATE;
-   }
-   break; 
- 
-  case ERROR_STATE:                                                   // To be enhanced - where we deal with errors
+    case ERROR_STATE:                                                   // To be enhanced - where we deal with errors
    if (state != oldState) printStateTransition();
    //Serial.println("Halted in error state");
    Blynk.virtualWrite(V2, "Halted in error state\n");
@@ -315,6 +315,7 @@ void loop() {
   if (sample_now) {
     Particle.publish("User input received: Sampling Now");
   }
+
 } // end loop
 
 // subroutines
@@ -538,7 +539,7 @@ int setBottleVolume(String args) {
 }
 
 // take sample now
-int setBottleVolume(String command) {
+int sampleNow(String command) {
   sample_now = true;
   return 1;
 }
