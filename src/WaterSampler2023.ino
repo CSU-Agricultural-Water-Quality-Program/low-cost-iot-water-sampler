@@ -181,11 +181,11 @@ void setup() {
   // Particle functions
   //  Remote Reset Function Setup
   Particle.function("reset", cloudResetFunction);
-  Particle.function("setCollectVolume", setCollectVolume);
-  Particle.function("setCollectInterval", setCollectInterval);
-  Particle.function("setCollectThreshold", setCollectThreshold);
-  Particle.function("setBottleVolume", setBottleVolume);
-  Particle.function("sampleNow", sampleNow);
+  Particle.function("setCollectVolume (mL)", setCollectVolume);
+  Particle.function("setCollectInterval (min)", setCollectInterval);
+  Particle.function("setCollectThreshold (cm)", setCollectThreshold);
+  Particle.function("setBottleVolume (mL)", setBottleVolume);
+  Particle.function("sampleNow (true/false)", sampleNow);
     
 } // end setup
 
@@ -287,7 +287,7 @@ void loop() {
     CellularSignal sig = Cellular.RSSI(); // get signal strength
     rssi = sig.getQuality();
     float strength = sig.getStrength();
-    snprintf(sigString,sizeof(sigString), "%.02f %", strength);
+    snprintf(sigString,sizeof(sigString), "%.02f", strength);
   
     //FuelGauge fuel;
       // float voltage = fuel.getVCell();
@@ -300,7 +300,7 @@ void loop() {
     ubidots.add("SigS", strength);
   
       bool bufferSent = false;
-      bufferSent =ubidots.send();  //Send data to ubidot
+      bufferSent = ubidots.send();  //Send data to ubidot
       Time_old = Time.minute(); // resetting time 
   }
 
@@ -354,7 +354,7 @@ bool collectSample() {  // pump desired volume into sample bottle
    sampleSteps = ml_to_collect/volCal1;
    stepper1.setCurrentPosition(0);
 
-   while (stepper1.currentPosition() != sampleSteps && (currentMillis-startMillis)<maxsampleMillis){   
+   while (stepper1.currentPosition() != static_cast<long>(sampleSteps) && (currentMillis - startMillis) < static_cast<unsigned long>(maxsampleMillis)) {   
      currentMillis=millis(); // wait for sampling to complete or run out of time
      stepper1.setSpeed(stepperSpeed);
      stepper1.runSpeed();
@@ -405,7 +405,7 @@ bool purgeSystem() {  // reverse pump and purge water lines of all water
    sampleStepsPerge = sampleSteps*-1;
    //while (pulseTicks<purgeTicks && (currentMillis-startMillis)<maxpurgeMillis){
    stepper1.setCurrentPosition(0);
-   while (stepper1.currentPosition() != sampleStepsPerge && (currentMillis-startMillis)<maxpurgeMillis){
+   while (stepper1.currentPosition() != static_cast<long>(sampleStepsPerge) && (currentMillis - startMillis) < static_cast<unsigned long>(maxpurgeMillis)) {
      currentMillis=millis(); // wait for purge to complete or run out of time
      waterMean = meanFilter.AddValue(digitalRead(WATER_PIN));
      stepper1.setSpeed(-1000);
