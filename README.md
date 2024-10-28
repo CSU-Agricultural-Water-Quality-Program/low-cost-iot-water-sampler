@@ -1,6 +1,6 @@
 [![AWQP Logo](./figures/AWQP_horizontal_rounded.png)](https://waterquality.colostate.edu)
 
-[![DOI](https://zenodo.org/badge/681357586.svg)](https://zenodo.org/doi/10.5281/zenodo.10257622)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14003999.svg)](https://doi.org/10.5281/zenodo.14003999)
 
 # Low-Cost IoT Water Sampler
 A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
