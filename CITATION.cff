@@ -15,12 +15,8 @@ authors:
     given-names: Erik
   - family-names: Bauder
     given-names: Troy
-  - family-names: Casey
-    given-names: Dylan
-  - family-names: Ham
-    given-names: Jay
-  - family-names: Uchanski
-    given-names: Mark
+  - family-names: Ladow
+    given-names: Jacob
 url: >-
   https://github.com/CSU-Agricultural-Water-Quality-Program/low-cost-iot-water-sampler
 keywords:
@@ -28,5 +24,6 @@ keywords:
   - Water Quality
   - Environmental Monitoring
   - Open Source
-version: '1.11'
+version: '1.2'
 date-released: '2024-10-28'
+doi: 10.5281/zenodo.14003999
