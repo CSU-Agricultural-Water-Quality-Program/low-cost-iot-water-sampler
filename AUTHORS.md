@@ -5,7 +5,7 @@ List of contributors to the Low-Cost IoT Water Sampler project.
 ## Project Maintainers
 
 - [Emmanuel Deleon](https://github.com/mannydeleon99) - Lead Hardware and software developer
-- [A.J. Brown](https://github.com/ansleybrown1337) - Software developer and maintainer. Manages Github repository. Leads peer-reviewed publications on the project.
+- [A.J. Brown](https://github.com/ansleybrown1337) - Software developer and maintainer. Manages Github repository.
 
 ## Contributors
 
