@@ -1,9 +1,22 @@
-cff-version: 1.1.0
+cff-version: 1.1.1
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: Joe
-  given-names: Johnson
-orcid: https://orcid.org/0000-0000-0000-0000
-title:CSU-Agricultural-Water-Quality-Program/low-cost-iot-water-sampler: Initial Public Release
-version: v1.10
-date-released: 2023-12-04
+  - family-names: Deleon
+    given-names: Emmanuel
+  - family-names: Brown
+    given-names: Ansley
+  - family-names: Wardle
+    given-names: Erik
+  - family-names: Bauder
+    given-names: Troy
+  - family-names: Casey
+    given-names: Dylan
+  - family-names: Ham
+    given-names: Jay
+  - family-names: Uchanski
+    given-names: Mark
+title: "Low-Cost IoT Water Sampler"
+version: "1.11"
+doi: "10.5281/zenodo.10257622"
+date-released: 2024-10-28
+url: "https://zenodo.org/doi/10.5281/zenodo.10257622"
