@@ -190,6 +190,7 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 - V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
 - V1.09 - added remote reset function
 - V1.10 - added config.h file to store sensitive info and device speicific info
+- V1.11 - fixed config.h file and updates bill of materials
 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
