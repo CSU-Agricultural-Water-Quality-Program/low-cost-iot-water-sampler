@@ -1,10 +1,11 @@
-cff-version: 1.1.0
+cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
   - family-names: Deleon
     given-names: Emmanuel
   - family-names: Brown
     given-names: Ansley
+    orcid: https://orcid.org/0000-0002-2803-4742
   - family-names: Wardle
     given-names: Erik
   - family-names: Bauder
@@ -16,7 +17,8 @@ authors:
   - family-names: Uchanski
     given-names: Mark
 title: "Low-Cost IoT Water Sampler"
-version: "1.11"
-doi: "10.5281/zenodo.10257622"
+version: 1.11
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.10257622
 date-released: 2024-10-28
-url: "https://zenodo.org/doi/10.5281/zenodo.10257622"
