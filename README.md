@@ -215,4 +215,4 @@ This project is licensed under the GNU GENERAL PUBLIC LICENSE Version 2 (GNU GPL
 
 **Please visit [CSU STRATA's website](https://csustrata.org/technology-transfer/available-technology/low-cost-automated-water-sampler/) to inquire about a permissive commercial license for this project, and use the [contact form on that page](https://csustrata.org/technology-contact-2024-035/) for initiating that discussion.**
 
-Copyright © 2023 Colorado State University Agricultural Water Quality Program. All rights reserved.
+Copyright © 2024 Colorado State University Agricultural Water Quality Program. All rights reserved.
