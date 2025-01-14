@@ -9,6 +9,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 > This project is actively under development. Code, parts, instructions, and other content are subject to change as we enhance the LCS. If you download/clone/fork this repository, we ask that you **please [email us directly](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub)** for the most up-to-date information and resources. We will also email you with any news related to the project moving forward!
 
 ## Table of Contents
+- [Introduction](#low-cost-iot-water-sampler)
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
 - [Repo Contents](folder-contents)
 - [Low Cost Sampler Description](#low-cost-sampler-description)
