@@ -67,7 +67,7 @@ cellular-enabled microcontroller, 2) a 12V battery and solar charger, 3) a peris
 tubing for water sample collection, 4) a 12V, 10W solar panel, 5) a water depth detecting sensor
 and, 6) a cooler for sample preservation.
 
-![low-cost sampler image](./figures/LCS.png)
+![low-cost sampler image](./figures/Hardware_description.png)
 **Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a 12 V, 10 W solar panel, 5) a water depth detecting sensor, and 6) a cooler for sample preservation.
 
 
@@ -94,15 +94,22 @@ Figure 2.
 ![flow comparison graph](./figures/flowComparison.png)
 **Figure 3.** Results from a preliminary flow comparison study between the LCS and commercial Teledyne ISCO 6712 automated sampler.
 
+## Software
+- Particle Account and Particle Workbench on Virtual Studio Code is needed to claim a Particle Boron and flash calibration and sampler code.  
+- Blynk IoT controls and monitors the LCS remotely via phone app. 
+- (optional) Ubidots offers storage and visualization of sampler data. 
+
 ## 3d-prints
 As found on our [AWQP Printables page](https://printables.com/@AgWaterQuality_66019):
 * [Peristaltic pump mount](https://printables.com/model/560168-mount-for-a-peristaltic-pump)
-* [12v alkaline battery and solar charger mount](https://printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
+* [12v Battery  mount](https://printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
+* [Solar Controller Mount](https://www.printables.com/model/1177165-solar-controller-huine-mount-for-low-cost-iot-wate)
+* [eTape TPU Cover](https://www.printables.com/model/1177200-milone-etape-tpu-protective-cover-for-awpq-low-cos) 
 
 ## Parts List
 Please [contact the AWQP](mailto:ansley.brown@colostate.edu;e.deleon@colostate.edu;erik.wardle@colostate.edu?subject=Inquiry%20about%20the%20Low%20Cost%20IoT%20Water%20Sampler%20from%20GitHub) for the most current part list; these are often changing and being updated as improvements get implemented!
 
-Current list updated 28 Oct. 2024:
+Current list updated 03 Feb. 2025:
 
 | Designator                                | Component                                                                                                                                                                    | Number | Cost per unit (USD) | Total cost (USD) | Source of materials                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | Material type         |
 |-------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------|---------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------|
@@ -139,17 +146,94 @@ Current list updated 28 Oct. 2024:
 
 
 ## How-to guide
-More coming soon!
+Introduction to major hardware components and brief description:
+
+- Enclosure: Protects the sampler components from the environment
+- Peristaltic Pump: Collects water samples 
+    - DRV8825 Motor Driver: Controls peristaltic pump with precision and efficiency
+    - Non-contact water sensor: Detects water priming the pump
+- 12-volt Battery: Power supply 
+    - Solar Panel (10W): Charges Battery 
+    - Solar Charging/Controller: Regulates power from the solar panel to the battery 
+- Particle Boron Microprocessor: Central processing and communication unit
+    - PCB : Carrier for the Particle Boron and all sensor connection points
+- eTape Water Level Sensor: Monitors water levels in flume or streams. **Note:** For the AWPQ Low-Cost Sampler (LCS), you must request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
+- Cooler: Holds sample bottles and keeps collected water samples cool. 
+
+
+Steps 
+
 1. Purchase all necessary hardware components 
 2. 3D-print necessary mounting parts
 3. Assemble hardware - [Here's our video guide!](https://youtu.be/WXuII_zaUJU?si=he2FRvl1eTsFYpLh)
 
 [![low cost sampler installation video](./figures/youtube_img.JPG)](https://youtu.be/WXuII_zaUJU?si=he2FRvl1eTsFYpLh)
 
+**Hardware** **Components:**
+- Pump Assembly 
+- Waterproof Enclosure
+- Custom 5 conduit cable to connect pump assembly to PCB
+- Etape Water Level Sensor 
+- Power Assembly 
+- Custom PCB board 
+
+<br>
+
+<img src="./figures/PCB_Guide.png" alt="PCB Guide" width="65%" />
+<img src="./figures/PCB_complete_back.jpg" alt="PCB Guide" width="65%" />    
+
+<br>
+
+**Particle** **Boron** **Pinout**
+| Left Pinout (16) | Function     | Right Pinout (12) | Function        |
+|:------------------:|:--------------:|-------------------:|:-----------------:|
+| RST              |              | Li+               |                 |
+| 3.3              |              | EN                |                 |
+| MD               |              | USB               |                 |
+| Ground           |              | D8                |                 |
+| A0               | Etape        | D7                |                 |
+| A1               |              | D6                |                 |
+| A2               |              | D5                | Step            |
+| A3               |              | D4                | Water sensor    |
+| A4               |              | D3                | DIR             |
+| A5               |              | D2                | StepEN          |
+| D13              |              | D1                | SCL i2C         |
+| D12              |              | D0                | SDA i2C         |
+| D11              |              |                   |                 |
+| D10              |              |                   |                 |
+| D9               |              |                   |                 |
+| NC               |              |                   |                 |
+
+<br>
+
+
 4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
+
+The LCS requires user inputs to program the sampling protocol. These inputs include Volume to Sample (mL), Sampling Interval (min), Threshold (cm), Sample Bottle (mL). Using Blynk, users will input how much volume to collect (max 700mL per sample interval), how often to sample in minutes, the threshold depth in centimeters that will activate your sampler to start collecting water, and how large is the sample bottle to prevent sample slipovers.
+
+- Setup Template 
+- Add the following Datastreams as virtual pins 
+
+<br>
+
+| Name              | Virtual Pin | Data Type | Unit   | Min-Max    | Default |
+|:-----------------:|:-------------:|:-----------:|:--------:|:------------:|:---------:|
+| mL to Sample      | V1          | Integer   | (mL)   | 0 - 700   | 200     |
+| Terminal Status   | V2          | String    |        |            |         |
+| Sample Interval   | V3          | Integer   | (min)  | 0 - 720    | 60      |
+| Threshold         | V4          | Integer   | (cm)   | 0 - 100    | 100     |
+| Sample Bottle     | V5          | Integer   | (mL)   | 0 - 10000  | 2000    |
+| Sample Now        | V9          | Integer   |        |            |         |
+| mL to Collect     | V12         | Integer   | (mL)   | 0 - 1000   | na      |
+| Current Threshold | V14         | Integer   | (cm)   | 0 - 100    | na      |
+| Current Depth     | V17         | Integer   | (cm)   | 0 - 100    | na      |
+
+<br>
+
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
-6. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
-7. To be continued...
+6. eTape and Pump Calibration
+7. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
+8. To be continued...
 
 ### Configuration file instructions
 
@@ -172,9 +256,9 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 
 ## Known bugs
 - The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment
-- Etape readings can bounce, leading to unintentional sampling
+- The normal wired Etape readings can bounce, leading to unintentional sampling. This bounce has not been observed in the strudier wired Etape specially requested. Highly recommended to request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
     - we tend to leave the trigger point at an unrealistically high number until the device *should* be sampling, then we move it down to a realistic number (e.g., 2cm)
-- Etape sensors only begin to accurately read depth at the 2" mark on the device
+- Etape sensors only begin to accurately read depth at the 1" mark on the device
     - this is a hardware issue ongoing at Mileone
     - to circumvent this, we place the etape at -1" depths in the deployed stilling wells or other water bodies to ensure an accurate reading, then subtract 1" off of readings in post-processing for flow calculations.
 
@@ -191,6 +275,7 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 - V1.09 - added remote reset function
 - V1.10 - added config.h file to store sensitive info and device speicific info
 - V1.2 - fixed config.h file and updates bill of materials
+- V1.21 - Added images, pinout, and blynk datastreams to the How To section
 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
