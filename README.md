@@ -228,6 +228,10 @@ The LCS requires user inputs to program the sampling protocol. These inputs incl
 
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
 6. eTape and Pump Calibration
+
+    - eTape Calibration [Repo](https://github.com/CSU-Agricultural-Water-Quality-Program/AWQP-LCS-Etape-Calibration/tree/main) 
+    - Pump Calibrtion [Repo](https://github.com/CSU-Agricultural-Water-Quality-Program/AWQP_LCS_pump_calibration)
+
 7. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
 8. Use the Blynk app to program you sampler 
 9. Depoly and Enjoy!
@@ -242,7 +246,7 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 2. **Duplicate and Rename**:
    - Copy the `config_template.h` and rename the copied file to `config.h`.
 
-3. **Add Your API Keys and/or tokens**:
+3. **Add Your API tokens for Ubidots and Bylnk**:
    - Open `config.h` with a text editor of your choice. Replace the placeholders like `"YOUR_API_KEY_HERE"` with your actual API keys or other configuration details.
 
 4. **Save and Close**:
