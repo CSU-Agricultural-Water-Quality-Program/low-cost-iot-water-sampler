@@ -2,7 +2,7 @@
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.14003999.svg)](https://doi.org/10.5281/zenodo.14003999)
 
-# Low-Cost IoT Water Sampler
+# AWQP Low-Cost IoT Water Sampler
 A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technology for scalable, near-real-time water quality research developed by the Colorado State University Agricultural Water Quality Program (AWQP).
 
 > [!NOTE]
@@ -12,7 +12,7 @@ A low-cost, automated water sampler (LCS) with Internet of Things (IoT) technolo
 - [Why create a low-cost water sampler?](#why-create-a-low-cost-water-sampler?)
 - [Repo Contents](folder-contents)
 - [Low Cost Sampler Description](#low-cost-sampler-description)
-- [3d prints](#3d-prints)
+- [3D prints](#3D-prints)
 - [Parts List](#parts-list)
 - [How-to guide](#how-to-guide)
 - [Known Bugs](#known-bugs)
@@ -46,12 +46,13 @@ To learn more about AWQP, please visit [the AWQP website](https://waterquality.c
 ## Repo Contents
 - .vscode
     - settings for flashing in VS code using the particle workbench add-on.
-- 3d-prints
-    - contains .STL files for printing required assembly parts on a 3d-printer
 - compiled-firmwares
     - previously compiled firmwares for various borons (current code requires a unique binary for each device to accomodate for individual e-tape calibration)
 - figures
     - figures embedded into README.md
+- files
+    - 3D prints: contains .STL files for printing that required for assembly
+    - Bill of Materials: Excel with BOM, links, and prices 
 - lib
     - libraries used in source code
 - src
@@ -63,12 +64,12 @@ To learn more about AWQP, please visit [the AWQP website](https://waterquality.c
 
 ## Low Cost Sampler Description
 The AWQP-developed LCS is comprised of six main components as shown in Figure 2: 1) a
-cellular-enabled microcontroller, 2) a 12V battery and solar charger, 3) a peristaltic pump with
-tubing for water sample collection, 4) a 12V, 10W solar panel, 5) a water depth detecting sensor
-and, 6) a cooler for sample preservation.
+cellular-enabled microcontroller, 2) a 12V battery, solar controller and panel, 3) a peristaltic pump with
+tubing for water sample collection, 4) a water depth detecting sensor
+and, 5) a cooler for sample preservation.
 
 ![low-cost sampler image](./figures/Hardware_description.png)
-**Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated: 1) a cellular-enabled microcontroller, 2) a 12 V battery and solar charger, 3) a peristaltic pump with tubing, 4) a 12 V, 10 W solar panel, 5) a water depth detecting sensor, and 6) a cooler for sample preservation.
+**Figure 2.** Picture of the low-cost automated water sampler (LCS) deployed in-situ, with its primary components annotated
 
 
 Like commercial models, the LCS can detect and measure water flow in an installed flume via
@@ -99,8 +100,8 @@ Figure 2.
 - Blynk IoT controls and monitors the LCS remotely via phone app. 
 - (optional) Ubidots offers storage and visualization of sampler data. 
 
-## 3d-prints
-As found on our [AWQP Printables page](https://printables.com/@AgWaterQuality_66019):
+## 3D-prints
+Can be found on our [AWQP Printables page](https://printables.com/@AgWaterQuality_66019):
 * [Peristaltic pump mount](https://printables.com/model/560168-mount-for-a-peristaltic-pump)
 * [12v Battery  mount](https://printables.com/model/560141-awqp-12v-battery-mount-for-the-low-cost-sampler)
 * [Solar Controller Mount](https://www.printables.com/model/1177165-solar-controller-huine-mount-for-low-cost-iot-wate)
@@ -146,19 +147,19 @@ Current list updated 03 Feb. 2025:
 
 
 ## How-to guide
-Introduction to major hardware components and brief description:
+Introduction to major hardware components with a brief description:
 
 - Enclosure: Protects the sampler components from the environment
-- Peristaltic Pump: Collects water samples 
+- Pump Assembly: a peristaltic pump to collect water samples 
     - DRV8825 Motor Driver: Controls peristaltic pump with precision and efficiency
     - Non-contact water sensor: Detects water priming the pump
-- 12-volt Battery: Power supply 
+- Power Assembly: 12-volt Battery 
     - Solar Panel (10W): Charges Battery 
     - Solar Charging/Controller: Regulates power from the solar panel to the battery 
-- Particle Boron Microprocessor: Central processing and communication unit
-    - PCB : Carrier for the Particle Boron and all sensor connection points
-- eTape Water Level Sensor: Monitors water levels in flume or streams. **Note:** For the AWPQ Low-Cost Sampler (LCS), you must request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
-- Cooler: Holds sample bottles and keeps collected water samples cool. 
+- Device Control Unit: PCB Carrier for the Particle Boron Microprocessor and all sensor connection points
+- Water Depth Sensor: Using a eTape Water Level Sensor to monitor water level in flumes or streams. 
+    - **Note:** For outdoors used  the sturdy eTape cable directly from the manufacturer, Milone Technologies.
+- Water Storage Apparatus: Holds sample bottles and keeps collected samples cool. 
 
 
 Steps 
@@ -169,18 +170,13 @@ Steps
 
 [![low cost sampler installation video](./figures/youtube_img.JPG)](https://youtu.be/WXuII_zaUJU?si=he2FRvl1eTsFYpLh)
 
-**Hardware** **Components:**
-- Pump Assembly 
-- Waterproof Enclosure
-- Custom 5 conduit cable to connect pump assembly to PCB
-- Etape Water Level Sensor 
-- Power Assembly 
-- Custom PCB board 
 
-<br>
+<br>  **Device Control Unit:** 
 
 <img src="./figures/PCB_Guide.png" alt="PCB Guide" width="65%" />
 <img src="./figures/PCB_complete_back.jpg" alt="PCB Guide" width="65%" />    
+
+**Figure 4.** Device Control Unit:  PCB front and back with wiring connection layouts and labels 
 
 <br>
 
@@ -233,7 +229,8 @@ The LCS requires user inputs to program the sampling protocol. These inputs incl
 5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
 6. eTape and Pump Calibration
 7. Flash code from this repo, after updating the `config.h` file with your TOKENs from Blynk and Ubidots
-8. To be continued...
+8. Use the Blynk app to program you sampler 
+9. Depoly and Enjoy!
 
 ### Configuration file instructions
 
@@ -255,11 +252,11 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 > Never commit your `config.h` with your actual API keys or Tokens to public repositories to ensure the privacy of your keys!
 
 ## Known bugs
-- The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment
-- The normal wired Etape readings can bounce, leading to unintentional sampling. This bounce has not been observed in the strudier wired Etape specially requested. Highly recommended to request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
+- The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment. Currenlty working on fix. 
+- In outdoor deployment, the normal wired Etape readings can bounce, leading to unintentional sampling. This bounce has not been observed in the strudier wired Etape specially requested with the TPU cover. Highly recommended to request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
     - we tend to leave the trigger point at an unrealistically high number until the device *should* be sampling, then we move it down to a realistic number (e.g., 2cm)
 - Etape sensors only begin to accurately read depth at the 1" mark on the device
-    - this is a hardware issue ongoing at Mileone
+    - this is a hardware design from Mileone
     - to circumvent this, we place the etape at -1" depths in the deployed stilling wells or other water bodies to ensure an accurate reading, then subtract 1" off of readings in post-processing for flow calculations.
 
 ## Latest updates
@@ -280,8 +277,9 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
 - make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.
-- add a "tube length" variable in the blynk app to calculate water needed to prime the pump prior to sampling.
+- if the water detection sensor continues to fail we will add a "tube length" variable in the blynk app to calculate water needed to prime the pump prior to sampling.
 - compare etape calibration data to see if a universal calibration equation can be developed instead of having individual calibration equations for each device
+- include firmware to add in situ water quality sensor like pH and turbidity 
 
 ## How to Cite
 
