@@ -3,32 +3,20 @@
 Project: Low-cost, IoT water sampler
 Description: A low-cost, automated water sampler (LCS) with Internet of Things
  (IoT) technology for scalable, near-real-time water quality research developed
- by the Colorado State University Agricultural Water Quality Program
+ by the Colorado State University Agricultural Water Quality Program.
  This version uses Blynk for control and user inputs.
- adapted from code written by chip mcclelland ,seeinsight.com
+ adapted from code written by chip mcclelland (seeinsight.com).
  Original Author: Emmanuel Deleon
 Modified by: Dylan Casey, and A.J. Brown
 Sponsor: Colorado State University Agricultural Water Quality Program
-License: GPL v2
+License: GNU GPL v2
 Created Date: 27 Nov 2019
-Last Update: 18 Oct 2023
+Last Update: 06 JUN 2025
 Particle Boron Firmware Target: 5.2.0
 */
 
-// v1.00 - Initial Release - Rough program outline with serial monitor// interface
-// v1.01 - First Working Version, debugged with keyboard input of sample volume
-// v1.02 - Uses Blynk  and WiFi for input and reporting instead of keyboard IDE
-// v1.03 - Add stats and other Blynk features, provisions for prepurge of hose
-// v1.04 - add a secound pump to the code
-// v1.05 - coverted to particle using workbench
-// v1.06 - added etape
-// V1.07 - moved to new blynk IoT
-// V1.08 - cleaned, added variable, add temp resistance to etapeand add project to private github repo
-// V1.09 - added remote reset function
-// V1.10 - added config.h file to store sensitive info and device speicific info
 
 #define BLYNK_PRINT Serial  // setup blynk
-// #define BLYNK_TEMPLATE_ID "TMPLirZT8ePI" // commented out when using config.h
 #define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
 
 //#define SERIESRESISTOR 2000    //12-in. etape resistance
@@ -43,29 +31,15 @@ Particle Boron Firmware Target: 5.2.0
 #include <blynk.h>
 #include "config.h" // include config file with tokens and other private info
 
-/*
-// below code not needed when using config.h file, but you can uncomment and use
-// this code instead if config.h isn't working for you.
-#ifndef TOKEN
-#define TOKEN  "{Ubidots API token here}" // Put your Ubidots API TOKEN here
-#endif
-*/
-
-Ubidots ubidots(TOKEN, UBI_TCP); // Comment this line to use another protocol.
+// Ubidots token used from config.h file (ONLY NEEDED IF USING UBIDOTS)
+// also uncomment lines 256 - 265 to use Ubidots
+// Ubidots ubidots(UBIDOTS_TOKEN, UBI_TCP);
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
 char auth[] = BLYNK_TEMPLATE_ID; // Blynk token from config.h file
-//char auth[] = "{token}"; // additional tokens can be commented for convenience
-//char auth[] = "{token}"; // additional tokens can be commented for convenience
 
-
-// Your WiFi credentials if using Particle Photon instead of Paricle Boron.
-// Set password to "" for open networks.
-//char ssid[] = "csu-guest";
-//char pass[] = "";
-
-
+// variable declarations
 char depthString[16];               //  depth 
 char thresholdString[16];           //   threshold
 char sample_numberString[16];      //   sample number
@@ -275,14 +249,11 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
   snprintf(depthString,sizeof(depthString) -1, "%4.1f cm", depth);  // convert to string
 
   CellularSignal sig = Cellular.RSSI(); // get signal strength
-  rssi = sig.getQuality();
+  rssi = sig.getQuality(); // get signal quality
   float strength = sig.getStrength();
   snprintf(sigString,sizeof(sigString), "%.02f %", strength);
  
- //FuelGauge fuel;
-  // float voltage = fuel.getVCell();
-  // float SoC = fuel.getSoC();
- 
+  /* Uncomment to use Ubidots
   ubidots.add("Level_cm", depth);  // send data to ubidots
   //ubidots.add("Volts", voltage);
   //ubidots.add("SoC", SoC);
@@ -290,7 +261,8 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
   ubidots.add("SigS", strength);
  
     bool bufferSent = false;
-    bufferSent =ubidots.send();  //Send data to ubidot
+    bufferSent = ubidots.send();  //Send data to ubidots
+  */
     Time_old = Time.minute(); // resetting time 
   }
 
