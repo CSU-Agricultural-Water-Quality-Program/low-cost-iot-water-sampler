@@ -57,11 +57,24 @@ To learn more about AWQP, please visit [the AWQP website](https://waterquality.c
     - libraries used in source code
 - src
     - source code for particle boron flashing
+    - config.h template for storing sensitive information like API keys and device-specific information needed to operate the LCS
 - target
     - available firmware targets for particle devices
+- .gitignore
+    - files and folders to ignore when committing to the repository (e.g., config.h)
+- AUTHORS.md
+    - list of authors and contributors to the project
+- CITATION.cff
+    - citation file for the project, please use this to cite the LCS in your work
+- CODE_OF_CONDUCT.md
+    - code of conduct for the project, please read before contributing
+- CONTRIBUTING.md
+    - guidelines for contributing to the project, please read before contributing
+- LICENSE.md
+    - licensed under GNU General Public License Version 2 (GNU GPL V2.0)
 - project.properties
     - contains project code and library dependencies
-
+    
 ## Low Cost Sampler Description
 The AWQP-developed LCS is comprised of five main components as shown in Figure 2: 1) device control panel 2) power assembly 3) pump assembly 4) a water depth sensor (eTape, MileOne), and 5) the water storage apparatus. 
 
@@ -109,7 +122,7 @@ Please [contact the AWQP](mailto:ansley.brown@colostate.edu;e.deleon@colostate.e
 
 Current list updated 03 Jun. 2025:
 
-[Bill of Materials](https://github.com/CSU-Agricultural-Water-Quality-Program/low-cost-iot-water-sampler/tree/LCS_Layout_update/files) 
+[Bill of Materials](files/Bill%20of%20Materials.xlsx) 
 
 ## How-to guide
 Introduction to major hardware components with a brief description:
@@ -129,7 +142,7 @@ Introduction to major hardware components with a brief description:
 
 Brief Overview: 
 
-1. Purchase all necessary hardware components 
+1. Purchase all necessary hardware components (see [Bill of Materials](/files/Bill%20of%20Materials.xlsx))
 2. 3D-print necessary mounting parts
 3. Assemble hardware - [Here's our video guide!](https://youtu.be/WXuII_zaUJU?si=he2FRvl1eTsFYpLh)
 
@@ -144,7 +157,7 @@ Brief Overview:
 
 <br>
 
-4. Install Blynk phone application - [Bynk application website](https://blynk.io/)
+4. Make Blynk account and install Blynk phone application - [Bynk application website](https://blynk.io/)
 
 The LCS requires user inputs to program the sampling protocol. These inputs include Volume to Sample (mL), Sampling Interval (min), Threshold (cm), Sample Bottle (mL). Using Blynk, users will input how much volume to collect (max 700mL per sample interval), how often to sample in minutes, the threshold depth in centimeters that will activate your sampler to start collecting water, and how large is the sample bottle to prevent sample slipovers.
 
@@ -167,7 +180,7 @@ The LCS requires user inputs to program the sampling protocol. These inputs incl
 
 <br>
 
-5. Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
+5. (optional) Make Ubidots account - [Ubidots website](https://industrial.ubidots.com/)
 6. eTape and Pump Calibration
 
     - eTape Calibration [Repo](https://github.com/CSU-Agricultural-Water-Quality-Program/AWQP-LCS-Etape-Calibration/tree/main) 
@@ -197,11 +210,11 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 > Never commit your `config.h` with your actual API keys or Tokens to public repositories to ensure the privacy of your keys!
 
 ## Known bugs
-- The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment. Currenlty working on fix. 
-- In outdoor deployment, the normal wired Etape readings can bounce, leading to unintentional sampling. This bounce has not been observed in the strudier wired Etape specially requested with the TPU cover. Highly recommended to request the sturdy eTape cable directly from the manufacturer, Milone Technologies.
-    - we tend to leave the trigger point at an unrealistically high number until the device *should* be sampling, then we move it down to a realistic number (e.g., 2cm)
+- The water detection sensor is unreliable in its current state; we are not sure if this is a hardware or software issue at the moment. Currenlty working on fix. This does not affect the sampling process, but it does mean that the pump may not prime properly if the water detection sensor fails to detect water in the hose.
+- In outdoor deployment, the normal wired Etape readings can bounce, leading to unintentional sampling. This bounce has not been observed in the strudier wired Etape specially requested with the TPU cover. We highly recommended to request the sturdy eTape cable directly from the manufacturer.
+    - we tend to leave the trigger point at an unrealistically high number (e.g., 1000cm) until the device *should* be sampling, then we move it down to a realistic number (e.g., 2cm)
 - Etape sensors only begin to accurately read depth at the 1" mark on the device
-    - this is a hardware design from Mileone
+    - this is a hardware issue, and cannot be fixed in software
     - to circumvent this, we place the etape at -1" depths in the deployed stilling wells or other water bodies to ensure an accurate reading, then subtract 1" off of readings in post-processing for flow calculations.
 
 ## Latest updates
@@ -218,13 +231,14 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 - V1.10 - added config.h file to store sensitive info and device speicific info
 - V1.2 - fixed config.h file and updates bill of materials
 - V1.21 - Added images, pinout, and blynk datastreams to the How To section
+- V1.3 - Cleaned up code for Hardware X article release, commented out Ubidots code since it is optional, updated config.h file
 
 ## Future Developments
 - Integrate a "time until next sampling" variable that can be called or sent at each payload
 - make e-tape calibration coeficcients either a dictionary and/or a particle variable to alleviate the need for tailored binaries to flash each device.  Ultimately, this would allow users to make the device a particle product and enable fleet flashing.
 - if the water detection sensor continues to fail we will add a "tube length" variable in the blynk app to calculate water needed to prime the pump prior to sampling.
-- compare etape calibration data to see if a universal calibration equation can be developed instead of having individual calibration equations for each device
-- include firmware to add in situ water quality sensor like pH and turbidity 
+- compare etape calibration data to see if a universal calibration equation can be developed for each etape length instead of having individual calibration equations for each device
+- include firmware to add *in situ* water quality sensor like pH and turbidity 
 
 ## How to Cite
 

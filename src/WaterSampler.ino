@@ -31,9 +31,10 @@ Particle Boron Firmware Target: 5.2.0
 #include <blynk.h>
 #include "config.h" // include config file with tokens and other private info
 
-// Ubidots token used from config.h file (ONLY NEEDED IF USING UBIDOTS)
-// also uncomment lines 256 - 265 to use Ubidots
-// Ubidots ubidots(UBIDOTS_TOKEN, UBI_TCP);
+// ######### Uncomment the following line if you want to use Ubidots ###########
+// Ubidots ubidots(UBIDOTS_TOKEN, UBI_TCP); // TOKEN from config.h file
+// also uncomment lines 259 - 266 to use Ubidots
+// #############################################################################
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
@@ -253,7 +254,8 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
   float strength = sig.getStrength();
   snprintf(sigString,sizeof(sigString), "%.02f %", strength);
  
-  /* Uncomment to use Ubidots
+  /* 
+  //################## Uncomment to use Ubidots ###############################
   ubidots.add("Level_cm", depth);  // send data to ubidots
   //ubidots.add("Volts", voltage);
   //ubidots.add("SoC", SoC);
@@ -262,7 +264,8 @@ if(Time.minute() % 5 == 0 && Time_old != Time.minute()){ //read every 20 min. ch
  
     bool bufferSent = false;
     bufferSent = ubidots.send();  //Send data to ubidots
-  */
+  //###########################################################################
+  */ 
     Time_old = Time.minute(); // resetting time 
   }
 
