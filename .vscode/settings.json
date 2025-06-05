@@ -6,6 +6,6 @@
     },
     "particle.targetPlatform": "boron",
     "particle.targetDevice": "Sampler-CT1",
-    "particle.firmwareVersion": "5.2.0",
+    "particle.firmwareVersion": "6.1.1",
     "C_Cpp.errorSquiggles": "enabled"
 }
