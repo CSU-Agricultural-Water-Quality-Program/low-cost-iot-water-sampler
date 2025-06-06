@@ -17,6 +17,7 @@ Particle Boron Firmware Target: 5.2.0
 
 
 #define BLYNK_PRINT Serial  // setup blynk
+#define BLYNK_TEMPLATE_ID "BLYNK_TEMPLATE_ID" // Blynk Template ID from config.h file
 #define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
 
 //#define SERIESRESISTOR 2000    //12-in. etape resistance
@@ -38,7 +39,7 @@ Particle Boron Firmware Target: 5.2.0
 
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = BLYNK_TEMPLATE_ID; // Blynk token from config.h file
+char auth[] = AUTH_TOKEN; // Blynk token from config.h file
 
 // variable declarations
 char depthString[16];               //  depth 

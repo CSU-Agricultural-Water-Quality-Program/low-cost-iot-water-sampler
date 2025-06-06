@@ -4,4 +4,5 @@
 // NOTE: rename this file to config.h and update the values below
 
 #define UBIDOTS_TOKEN "{YOUR TOKEN HERE}"  // Ubidots TOKEN
-#define BLYNK_TEMPLATE_ID "{YOUR TOKEN HERE}" // Blynk Template ID
+#define BLYNK_TEMPLATE_ID "{YOUR ID HERE}" // Blynk Template ID
+#define AUTH_TOKEN "{YOUR TOKEN HERE}" // Blynk Auth Token
