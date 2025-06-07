@@ -5,7 +5,7 @@
         "*.ino": "cpp"
     },
     "particle.targetPlatform": "boron",
-    "particle.targetDevice": "Sampler-CT1",
-    "particle.firmwareVersion": "6.1.1",
+    "particle.targetDevice": "Sampler_21",
+    "particle.firmwareVersion": "6.2.1",
     "C_Cpp.errorSquiggles": "disabled"
 }

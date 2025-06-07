@@ -12,39 +12,40 @@ Sponsor: Colorado State University Agricultural Water Quality Program
 License: GNU GPL v2
 Created Date: 27 Nov 2019
 Last Update: 06 JUN 2025
-Particle Boron Firmware Target: 5.2.0
+Particle Boron Firmware Target: 6.2.1
 */
-
-
-#define BLYNK_PRINT Serial  // setup blynk
-#define BLYNK_TEMPLATE_ID "BLYNK_TEMPLATE_ID" // Blynk Template ID from config.h file
-#define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
 
 //#define SERIESRESISTOR 2000    //12-in. etape resistance
 #define SERIESRESISTOR 2500    //15-in. etape resistance
 //#define SERIESRESISTOR 3000    //18-in. etape resistance
 //#define SERIESRESISTOR 4000    //24-in. etape resistance
 
+#include "config.h" // include config file with tokens and other private info
 #include <MeanFilterLib.h>  // setup library
 #include <AccelStepper.h>
 #include <QuickStats.h>
 #include <Ubidots.h> 
-#include <blynk.h>
-#include "config.h" // include config file with tokens and other private info
 
 // ######### Uncomment the following line if you want to use Ubidots ###########
-// Ubidots ubidots(UBIDOTS_TOKEN, UBI_TCP); // TOKEN from config.h file
+Ubidots ubidots(UBIDOTS_TOKEN, UBI_TCP); // TOKEN from config.h file
 // also uncomment lines 259 - 266 to use Ubidots
 // #############################################################################
 
+
+// ############################## Blynk Setup ##################################
 // You should get Auth Token in the Blynk App.
 // Go to the Project Settings (nut icon).
-char auth[] = AUTH_TOKEN; // Blynk token from config.h file
+#define BLYNK_PRINT Serial  // setup blynk
+#define BLYNK_DEVICE_NAME "Low Cost Water Sampler"
+// Note that the Blynk Template ID is already defined in the config.h file
+#include <blynk.h> // must be included after config.h and BLYNK_DEVICE_NAME
+char auth[] = BLYNK_AUTH_TOKEN; // Blynk auth token from config.h file
+// #############################################################################
 
 // variable declarations
-char depthString[16];               //  depth 
+char depthString[16];               //   depth
 char thresholdString[16];           //   threshold
-char sample_numberString[16];      //   sample number
+char sample_numberString[16];       //   sample number
 char sigString[16];                 //   signal strength
 
 

@@ -5,4 +5,4 @@
 
 #define UBIDOTS_TOKEN "{YOUR TOKEN HERE}"  // Ubidots TOKEN
 #define BLYNK_TEMPLATE_ID "{YOUR ID HERE}" // Blynk Template ID
-#define AUTH_TOKEN "{YOUR TOKEN HERE}" // Blynk Auth Token
+#define BLYNK_AUTH_TOKEN "{YOUR TOKEN HERE}" // Blynk Auth Token
