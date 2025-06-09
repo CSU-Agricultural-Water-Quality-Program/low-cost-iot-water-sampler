@@ -245,12 +245,12 @@ For the code to run properly, you'll need to set up a `config.h` file with your 
 If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it proves helpful in your work, please consider citing it. a [CITATION.cff](CITATION.cff) file is provided, or you can use the following BibTeX entry:
 
 ```bibtex
-@misc{awqp_lcs_2024_v2,
-  author       = {Emmanuel Deleon and Ansley Brown and Erik Wardle and Troy Bauder and Dylan Casey and Jay Ham and Mark Uchanski},
+@misc{awqp_lcs_2025_v1p3,
+  author       = {Emmanuel Deleon and Ansley Brown and Erik Wardle and Troy Bauder and Jakob Ladow},
   title        = {{Low-Cost IoT Water Sampler}},
-  month        = oct,
-  year         = 2024,
-  note         = {Version 1.2},
+  month        = jun,
+  year         = 2025,
+  note         = {Version 1.3},
   doi          = {10.5281/zenodo.14003999},
   publisher    = {Zenodo},
   url          = {https://zenodo.org/doi/10.5281/zenodo.14003999}
