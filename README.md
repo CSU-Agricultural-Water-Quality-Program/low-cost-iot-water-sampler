@@ -246,7 +246,7 @@ If you use the AWQP Low-Cost IoT Water Sampler (LCS) in your research or if it p
 
 ```bibtex
 @misc{awqp_lcs_2025_v1p3,
-  author       = {Emmanuel Deleon and Ansley Brown and Erik Wardle and Troy Bauder and Jakob Ladow},
+  author       = {Emmanuel Deleon and Ansley Brown and Erik Wardle and Jakob Ladow},
   title        = {{Low-Cost IoT Water Sampler}},
   month        = jun,
   year         = 2025,
